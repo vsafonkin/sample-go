@@ -25,8 +25,8 @@ jobs:
       with:
         go-version: ${{ inputs.go-version }}
 
-    - name: Build
-      run: go build ./sample.go
+#     - name: Build
+#       run: go build ./sample.go
 
     - name: Test
       run: go test -v ./...
