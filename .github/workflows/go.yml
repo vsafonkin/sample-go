@@ -11,7 +11,7 @@ on:
          required: false
          type: string
          description: "Select the version of go to use"
-         default: "^1.17.0"
+         default: "^1.19.0"
 
 jobs:
 
@@ -27,6 +27,9 @@ jobs:
 
     - name: Build
       run: go build ./sample.go
+
+    - name: Run
+      run: ./sample
 
     - name: Test
       run: go test -v ./...
