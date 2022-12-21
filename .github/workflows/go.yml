@@ -8,7 +8,7 @@ on:
   workflow_call:
     inputs:
        go-version:
-         required: false
+         required: true
          type: string
          description: "Select the version of go to use"
          default: "1.19.3"
