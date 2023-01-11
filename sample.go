@@ -12,4 +12,7 @@ func main() {
 
 	xnum := 0xFE
 	fmt.Println(xnum)
+
+	unum := '\u0061'
+	fmt.Println(unum)
 }
