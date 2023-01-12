@@ -17,5 +17,7 @@ func main() {
 	fmt.Println(unicode)
 
 	var test int
+	var str string
 	fmt.Println(test)
+	fmt.Println(str)
 }
