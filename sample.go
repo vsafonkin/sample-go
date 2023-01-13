@@ -18,4 +18,7 @@ func main() {
 
 	var bytenum byte
 	fmt.Println(bytenum)
+
+	fmt.Println(10 / 3)
+	fmt.Println(10 % 3)
 }
