@@ -15,9 +15,4 @@ func main() {
 
 	unicode := '\u0061'
 	fmt.Println(unicode)
-
-	var test int
-	var str string
-	fmt.Println(test)
-	fmt.Println(str)
 }
