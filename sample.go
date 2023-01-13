@@ -21,4 +21,7 @@ func main() {
 
 	fmt.Println(10 / 3)
 	fmt.Println(10 % 3)
+
+	b := 0b111
+	fmt.Println(b)
 }
