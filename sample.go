@@ -15,4 +15,7 @@ func main() {
 
 	unicode := '\u0061'
 	fmt.Println(unicode)
+
+	var bytenum byte
+	fmt.Println(bytenum)
 }
