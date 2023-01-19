@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
@@ -28,8 +29,8 @@ func main() {
 	fmt.Println(bnum + xnum)
 	fmt.Println("-----")
 
-	var x int = 254
-	var y float64 = 12.3
-	result := x + int(y)
-	fmt.Println("Result:", result)
+	test := math.Pow(2, 8)
+	result := test
+	fmt.Println(result)
+	fmt.Printf("Type: %T\n", result)
 }
