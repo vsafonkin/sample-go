@@ -28,6 +28,8 @@ func main() {
 	fmt.Println(bnum + xnum)
 	fmt.Println("-----")
 
-	var test int = 12345
-	fmt.Println((int16(test)))
+	var x int = 254
+	var y float64 = 12.3
+	result := x + int(y)
+	fmt.Println("Result:", result)
 }
