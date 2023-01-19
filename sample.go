@@ -29,8 +29,8 @@ func main() {
 	fmt.Println("-----")
 
 	// test := math.Pow(2, 64)
-	var test int = 260
-	result := byte(test)
+	var test float64 = 3.14
+	result := int(test)
 	fmt.Println(result)
 	fmt.Printf("Type: %T\n", result)
 }
