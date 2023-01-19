@@ -29,8 +29,8 @@ func main() {
 	fmt.Println("-----")
 
 	// test := math.Pow(2, 64)
-	var test float64 = 3.14
+	var test float64 = 254.1
 	result := int(test)
 	fmt.Println(result)
-	fmt.Printf("Type: %T\n", result)
+	fmt.Printf("Type: %T\nBinary: %b\nHex: %x\n", result, result, result)
 }
