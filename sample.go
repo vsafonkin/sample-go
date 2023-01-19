@@ -32,5 +32,5 @@ func main() {
 	var test float64 = 254.1
 	result := int(test)
 	fmt.Println(result)
-	fmt.Printf("Type: %T\nBinary: %b\nHex: %x\n", result, result, result)
+	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 }
