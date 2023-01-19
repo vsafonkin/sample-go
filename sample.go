@@ -24,4 +24,10 @@ func main() {
 
 	b := 0b101
 	fmt.Println(b)
+
+	fmt.Println(bnum + xnum)
+	fmt.Println("-----")
+
+	var test int = 12345
+	fmt.Println((int16(test)))
 }
