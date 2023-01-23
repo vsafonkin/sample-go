@@ -19,8 +19,6 @@ func main() {
 	var bytenum byte
 	fmt.Println(bytenum)
 
-	fmt.Println(10 / 3)
-
 	b := 0b101
 	fmt.Println(b)
 
