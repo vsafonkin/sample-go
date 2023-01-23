@@ -16,9 +16,6 @@ func main() {
 	unicode := '\u0061'
 	fmt.Println(unicode)
 
-	var bytenum byte
-	fmt.Println(bytenum)
-
 	b := 0b101
 	fmt.Println(b)
 
