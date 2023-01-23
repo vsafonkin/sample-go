@@ -20,7 +20,6 @@ func main() {
 	fmt.Println(bytenum)
 
 	fmt.Println(10 / 3)
-	fmt.Println(10 % 3)
 
 	b := 0b101
 	fmt.Println(b)
@@ -33,4 +32,5 @@ func main() {
 	result := int(test)
 	fmt.Println(result)
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
+	fmt.Printf("%d\n", 0b11111011)
 }
