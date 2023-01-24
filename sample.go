@@ -19,7 +19,6 @@ func main() {
 	fmt.Println(bnum + xnum)
 	fmt.Println("-----")
 
-	// test := math.Pow(2, 64)
 	var test float64 = 254.1
 	result := int(test)
 	fmt.Println(result)
