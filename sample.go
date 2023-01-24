@@ -16,9 +16,6 @@ func main() {
 	unicode := '\u0061'
 	fmt.Println(unicode)
 
-	b := 0b101
-	fmt.Println(b)
-
 	fmt.Println(bnum + xnum)
 	fmt.Println("-----")
 
