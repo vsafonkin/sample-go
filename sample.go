@@ -15,8 +15,6 @@ func main() {
 
 	unicode := '\u0061'
 	fmt.Println(unicode)
-
-	fmt.Println(bnum + xnum)
 	fmt.Println("-----")
 
 	var test float64 = 254.1
