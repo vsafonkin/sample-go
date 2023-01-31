@@ -6,6 +6,8 @@ import (
 
 func main() {
 
+	const num = 123
+
 	bnum := 0b11111110
 	fmt.Println(bnum)
 
