@@ -27,4 +27,9 @@ func main() {
 
 	var arr = [3]string{"golang", "python", "javascript"}
 	fmt.Println(arr)
+	fmt.Printf("Type: %T\n", arr)
+
+	var sl = arr[0:2]
+	fmt.Println(sl)
+	fmt.Printf("Type: %T\n", sl)
 }
