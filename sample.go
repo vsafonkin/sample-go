@@ -25,6 +25,6 @@ func main() {
 
 	fmt.Println("--- arrays ---")
 
-	var arr [3]string
+	var arr = [3]string{"golang", "python", "javascript"}
 	fmt.Println(arr)
 }
