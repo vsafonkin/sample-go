@@ -17,8 +17,8 @@ func main() {
 	fmt.Println(unicode)
 	fmt.Println("--- types ---")
 
-	var test float64 = 254.1
-	result := int(test)
+	var f float64 = 254.1
+	result := int(f)
 	fmt.Println(result)
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 	fmt.Printf("%d\n", 0b11111011)
@@ -32,4 +32,8 @@ func main() {
 	var sl = arr[0:2]
 	fmt.Println(sl)
 	fmt.Printf("Type: %T\n", sl)
+
+	test := []string{"hello", "goodbye"}
+	fmt.Println(test)
+
 }
