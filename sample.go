@@ -31,6 +31,7 @@ func main() {
 
 	var sl = arr[0:2]
 	fmt.Println(sl)
+	fmt.Printf("Length: %d\n", len(sl))
 	fmt.Printf("Type: %T\n", sl)
 
 	test := []string{"hello", "goodbye"}
