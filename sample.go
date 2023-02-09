@@ -37,4 +37,7 @@ func main() {
 	test := []string{"hello", "goodbye"}
 	fmt.Println(test)
 
+	// var x []string
+	x := []string{"sorry"}
+	fmt.Println(x)
 }
