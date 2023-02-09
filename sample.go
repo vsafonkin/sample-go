@@ -35,9 +35,10 @@ func main() {
 	fmt.Printf("Type: %T\n", sl)
 
 	test := []string{"hello", "goodbye"}
-	fmt.Println(test)
 
 	// var x []string
-	x := []string{"sorry"}
-	fmt.Println(x)
+	x := []string{"sorry", "please"}
+
+	resArray := append(test, x...)
+	fmt.Println(resArray)
 }
