@@ -36,8 +36,15 @@ func main() {
 
 	test := []string{"hello", "goodbye"}
 
-	// var x []string
 	x := []string{"sorry", "please"}
+	var y []string
+	if y == nil {
+		fmt.Println("y == nil")
+	}
+	y = append(y, "")
+	if y != nil {
+		fmt.Println("y =", y)
+	}
 
 	resArray := append(test, x...)
 	fmt.Println(resArray)
