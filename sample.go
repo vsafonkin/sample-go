@@ -48,4 +48,5 @@ func main() {
 
 	resArray := append(test, x...)
 	fmt.Println(resArray)
+	fmt.Println(len(resArray), cap(resArray))
 }
