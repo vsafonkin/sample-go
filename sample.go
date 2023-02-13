@@ -23,42 +23,4 @@ func main() {
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 	fmt.Printf("%d\n", 0b11111011)
 
-	fmt.Println("--- arrays ---")
-
-	var arr = [3]string{"golang", "python", "javascript"}
-	fmt.Println(arr)
-	fmt.Printf("Type: %T\n", arr)
-
-	var sl = arr[0:2]
-	fmt.Println(sl)
-	fmt.Printf("Length: %d\n", len(sl))
-	fmt.Printf("Type: %T\n", sl)
-
-	test := []string{"hello", "goodbye"}
-
-	x := []string{"sorry", "please"}
-	var y []string
-	if y == nil {
-		fmt.Println("y == nil")
-	}
-	y = append(y, "")
-	if y != nil {
-		fmt.Println("y =", y)
-	}
-
-	resArray := append(test, x...)
-	fmt.Println(resArray)
-	fmt.Println(len(resArray), cap(resArray))
-
-	mSlice := make([]int, 0, 100)
-	fmt.Println(mSlice, len(mSlice), cap(mSlice))
-	mSlice = append(mSlice, 123)
-	mSlice = append(mSlice, 456)
-	fmt.Println(mSlice, len(mSlice), cap(mSlice))
-
-	s := mSlice[:1]
-	s[0] = 789
-
-	fmt.Println(mSlice)
-
 }
