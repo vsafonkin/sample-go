@@ -49,4 +49,7 @@ func main() {
 	resArray := append(test, x...)
 	fmt.Println(resArray)
 	fmt.Println(len(resArray), cap(resArray))
+
+	mSlice := make([]int, 0, 100)
+	fmt.Println(mSlice, len(mSlice), cap(mSlice))
 }
