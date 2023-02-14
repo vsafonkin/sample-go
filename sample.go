@@ -25,12 +25,14 @@ func main() {
 
 	users := map[string]int{}
 	fmt.Println(users)
-
 	users["Mike"] = 123
 	users["John"] = 456
 
 	fmt.Println(users)
 
 	var test map[string]string
+	if test == nil {
+		fmt.Println("test nil")
+	}
 	fmt.Println(test)
 }
