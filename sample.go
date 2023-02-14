@@ -24,15 +24,15 @@ func main() {
 	fmt.Printf("%d\n", 0b11111011)
 
 	users := map[string]int{}
-	fmt.Println(users)
+	fmt.Println(users, len(users))
 	users["Mike"] = 123
 	users["John"] = 456
 
-	fmt.Println(users)
+	fmt.Println(users, len(users))
 
 	var test map[string]string
 	if test == nil {
 		fmt.Println("test nil")
 	}
-	fmt.Println(test)
+	fmt.Println(test, len(test))
 }
