@@ -23,4 +23,9 @@ func main() {
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 	fmt.Printf("%d\n", 0b11111011)
 
+	users := map[string]int{}
+	users["Mike"] = 123
+	users["John"] = 456
+
+	fmt.Println(users)
 }
