@@ -23,16 +23,14 @@ func main() {
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 	fmt.Printf("%d\n", 0b11111011)
 
-	users := map[string]int{}
-	fmt.Println(users, len(users))
-	users["Mike"] = 123
-	users["John"] = 456
-
-	fmt.Println(users, len(users))
-
-	var test map[string]string
-	if test == nil {
-		fmt.Println("test nil")
+	type user struct {
+		name string
+		age  int
 	}
-	fmt.Println(test, len(test))
+
+	var mike user
+	mike.name = "mike"
+	mike.age = 23
+
+	fmt.Println(mike)
 }
