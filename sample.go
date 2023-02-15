@@ -32,5 +32,10 @@ func main() {
 	mike.name = "mike"
 	mike.age = 23
 
-	fmt.Println(mike)
+	bob := user{
+		name: "bob",
+		age:  34,
+	}
+
+	fmt.Println(mike, bob)
 }
