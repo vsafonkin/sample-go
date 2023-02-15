@@ -2,11 +2,16 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
 
 	fmt.Println("--- hello ---")
+
+	var currentTime = time.Now()
+	fmt.Println(currentTime)
+
 	bnum := 0b11111110
 	fmt.Println(bnum)
 
