@@ -43,4 +43,14 @@ func main() {
 	}
 
 	fmt.Println(mike, bob)
+
+	order := struct {
+		id    int
+		title string
+	}{
+		id:    12345,
+		title: "pc",
+	}
+
+	fmt.Println(order)
 }
