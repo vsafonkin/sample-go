@@ -44,6 +44,10 @@ func main() {
 
 	fmt.Println(mike, bob)
 
+	if mike != bob {
+		fmt.Println("mike is not equal bob")
+	}
+
 	order := struct {
 		id    int
 		title string
