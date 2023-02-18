@@ -61,4 +61,9 @@ func main() {
 	for i := 0; i < 5; i++ {
 		fmt.Println(i)
 	}
+
+	vals := []string{"one", "two", "three", "four"}
+	for i, v := range vals {
+		fmt.Printf("Index: %d, Value: %s\n", i, v)
+	}
 }
