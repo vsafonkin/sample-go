@@ -75,4 +75,8 @@ func main() {
 	for k, v := range test {
 		fmt.Printf("Key: %s, Value: %s\n", k, v)
 	}
+
+	for _, v := range []int{1, 2, 3, 4} {
+		fmt.Println(v)
+	}
 }
