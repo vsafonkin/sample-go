@@ -66,4 +66,13 @@ func main() {
 	for i, v := range vals {
 		fmt.Printf("Index: %d, Value: %s\n", i, v)
 	}
+
+	test := map[string]string{
+		"alisa": "bob",
+		"hello": "goodbye",
+	}
+
+	for k, v := range test {
+		fmt.Printf("Key: %s, Value: %s\n", k, v)
+	}
 }
