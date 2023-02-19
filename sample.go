@@ -79,4 +79,8 @@ func main() {
 	for _, v := range []int{1, 2, 3, 4} {
 		fmt.Println(v)
 	}
+
+	for _, char := range "hello golang" {
+		fmt.Println(string(char), char)
+	}
 }
