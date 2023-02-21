@@ -84,15 +84,4 @@ func main() {
 		fmt.Println(string(char), char)
 	}
 
-	word := "gogogo"
-	switch len(word) {
-	case 5:
-		fmt.Println("five")
-	case 6:
-		fmt.Println("six")
-	case 7:
-		fmt.Println("seven")
-	default:
-		fmt.Println("default")
-	}
 }
