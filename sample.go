@@ -57,31 +57,4 @@ func main() {
 	}
 
 	fmt.Println(order)
-
-	for i := 0; i < 5; i++ {
-		fmt.Println(i)
-	}
-
-	vals := []string{"one", "two", "three", "four"}
-	for i, v := range vals {
-		fmt.Printf("Index: %d, Value: %s\n", i, v)
-	}
-
-	test := map[string]string{
-		"alisa": "bob",
-		"hello": "goodbye",
-	}
-
-	for k, v := range test {
-		fmt.Printf("Key: %s, Value: %s\n", k, v)
-	}
-
-	for _, v := range []int{1, 2, 3, 4} {
-		fmt.Println(v)
-	}
-
-	for _, char := range "hello golang" {
-		fmt.Println(string(char), char)
-	}
-
 }
