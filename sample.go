@@ -6,9 +6,6 @@ import (
 )
 
 func main() {
-
-	fmt.Println("--- hello ---")
-
 	var currentTime = time.Now()
 	fmt.Println(currentTime)
 
