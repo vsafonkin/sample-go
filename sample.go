@@ -27,34 +27,4 @@ func main() {
 	fmt.Println(result)
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 	fmt.Printf("%d\n", 0b11111011)
-
-	type user struct {
-		name string
-		age  int
-	}
-
-	var mike user
-	mike.name = "mike"
-	mike.age = 23
-
-	bob := user{
-		name: "bob",
-		age:  34,
-	}
-
-	fmt.Println(mike, bob)
-
-	if mike != bob {
-		fmt.Println("mike is not equal bob")
-	}
-
-	order := struct {
-		id    int
-		title string
-	}{
-		id:    12345,
-		title: "pc",
-	}
-
-	fmt.Println(order)
 }
