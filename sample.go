@@ -17,7 +17,6 @@ func main() {
 
 	unicode := '\u0061'
 	fmt.Println(unicode)
-	fmt.Println("--- types ---")
 
 	var f float64 = 254.1
 	result := int(f)
