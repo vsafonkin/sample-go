@@ -23,4 +23,15 @@ func main() {
 	fmt.Println(result)
 	fmt.Printf("Type: %T\nBinary: %b\nHex: %X\n", result, result, result)
 	fmt.Printf("%d\n", 0b11111011)
+
+	fmt.Println("-----")
+	test("hello", "goodbye")
+	fmt.Println("-----")
+	test("one", "two", "three")
+}
+
+func test(strarray ...string) {
+	for _, value := range strarray {
+		fmt.Println(value)
+	}
 }
