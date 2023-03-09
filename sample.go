@@ -27,10 +27,20 @@ func main() {
 	myFunc := test
 	myFunc("hello", "goodbye")
 
+	err := runSomeFunc(myFunc, "abrakadabra")
+	if err != nil {
+		fmt.Println("Error: ", err)
+	}
 }
 
-func test(strarray ...string) {
+func test(strarray ...string) error {
 	for _, value := range strarray {
 		fmt.Println(value)
 	}
+	return nil
+}
+
+func runSomeFunc(someFunc func(...string) error, str string) error {
+	err := someFunc(str)
+	return err
 }
