@@ -41,7 +41,7 @@ func main() {
 	fmt.Println(reflect.TypeOf(str))
 
 	var item int
-	item, err = fmt.Sscan(str)
+	_, err = fmt.Sscan(str, &item)
 	if err != nil {
 		fmt.Println("Sscan error: ", err)
 	}
