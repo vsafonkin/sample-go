@@ -31,6 +31,12 @@ func main() {
 	if err != nil {
 		fmt.Println("Error: ", err)
 	}
+
+	var str string
+
+	id := 123
+	str = fmt.Sprint(id)
+	fmt.Println(str)
 }
 
 func test(strarray ...string) error {
