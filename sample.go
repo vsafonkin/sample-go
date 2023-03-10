@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -37,6 +38,14 @@ func main() {
 	id := 123
 	str = fmt.Sprint(id)
 	fmt.Println(str)
+	fmt.Println(reflect.TypeOf(str))
+
+	var item int
+	item, err = fmt.Sscan(str)
+	if err != nil {
+		fmt.Println("Sscan error: ", err)
+	}
+	fmt.Println(item)
 }
 
 func test(strarray ...string) error {
