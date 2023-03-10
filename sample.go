@@ -35,7 +35,8 @@ func main() {
 
 	var str string
 
-	id := 123
+	id := 12345
+	fmt.Println(reflect.TypeOf(id))
 	str = fmt.Sprint(id)
 	fmt.Println(str)
 	fmt.Println(reflect.TypeOf(str))
