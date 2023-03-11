@@ -47,6 +47,12 @@ func main() {
 		fmt.Println("Sscan error: ", err)
 	}
 	fmt.Println(item)
+	sep()
+
+	arr := make([]byte, 0)
+	arr = append(arr, 123, 234)
+	fmt.Println(arr)
+
 }
 
 func test(strarray ...string) error {
@@ -59,4 +65,8 @@ func test(strarray ...string) error {
 func runSomeFunc(someFunc func(...string) error, str string) error {
 	err := someFunc(str)
 	return err
+}
+
+func sep() {
+	fmt.Printf("\n-----\n\n")
 }
