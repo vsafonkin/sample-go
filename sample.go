@@ -51,7 +51,7 @@ func main() {
 
 	arr := make([]byte, 0)
 	arr = append(arr, 123, 234)
-	fmt.Println(arr)
+	fmt.Println(arr, reflect.TypeOf(arr))
 
 }
 
