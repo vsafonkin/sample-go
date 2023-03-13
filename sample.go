@@ -31,6 +31,10 @@ func main() {
 	if err != nil {
 		fmt.Println("Error: ", err)
 	}
+	sep()
+
+	var nilMap map[string]int
+	fmt.Println(nilMap)
 
 }
 
