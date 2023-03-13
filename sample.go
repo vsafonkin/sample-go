@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -33,22 +34,28 @@ func main() {
 	}
 	sep()
 
-	var nilMap map[string]int
-	fmt.Println(nilMap)
-	testMap := map[string]int{}
-	names := make(map[string]string, 5)
+	type person struct {
+		name  string
+		age   int
+		admin bool
+	}
 
-	fmt.Println(nilMap == nil)
-	fmt.Println(testMap == nil)
-	fmt.Printf("nil: %t\n", names == nil)
+	bob := person{
+		name:  "bob",
+		age:   13,
+		admin: true,
+	}
 
-	names["admin"] = "Vasya"
-	fmt.Printf("Names map: %s\n", names)
+	fmt.Println(reflect.TypeOf(bob), bob)
 
-	admin, ok := names["admin"]
-	fmt.Println(admin, ok)
-	delete(names, "admin")
-	fmt.Println(names)
+	var alisa person
+	fmt.Println(alisa)
+
+	var anonimusStruct struct {
+		str string
+	}
+
+	fmt.Println(anonimusStruct)
 }
 
 func test(strarray ...string) error {
