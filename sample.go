@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 	"time"
 )
 
@@ -32,26 +31,6 @@ func main() {
 	if err != nil {
 		fmt.Println("Error: ", err)
 	}
-
-	var str string
-
-	id := 12345
-	fmt.Println(reflect.TypeOf(id))
-	str = fmt.Sprint(id)
-	fmt.Println(str)
-	fmt.Println(reflect.TypeOf(str))
-
-	var item int
-	_, err = fmt.Sscan(str, &item)
-	if err != nil {
-		fmt.Println("Sscan error: ", err)
-	}
-	fmt.Println(item)
-	sep()
-
-	arr := make([]byte, 0)
-	arr = append(arr, 123, 234)
-	fmt.Println(arr, reflect.TypeOf(arr))
 
 }
 
