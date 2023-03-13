@@ -41,6 +41,8 @@ func main() {
 	userNames := getUserNames(User{name: "bob", age: 123}, User{name: "alisa", age: 456})
 	fmt.Println(userNames)
 
+	testArgs("hello", "goodbye")
+
 }
 
 func test(strarray ...string) error {
@@ -65,4 +67,8 @@ func getUserNames(users ...User) []string {
 		userNames = append(userNames, v.name)
 	}
 	return userNames
+}
+
+func testArgs(...string) {
+	fmt.Println("testArgs")
 }
