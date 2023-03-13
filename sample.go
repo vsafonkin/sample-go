@@ -45,8 +45,10 @@ func main() {
 	names["admin"] = "Vasya"
 	fmt.Printf("Names map: %s\n", names)
 
-	v, ok := names["admin"]
-	fmt.Println(v, ok)
+	admin, ok := names["admin"]
+	fmt.Println(admin, ok)
+	delete(names, "admin")
+	fmt.Println(names)
 }
 
 func test(strarray ...string) error {
