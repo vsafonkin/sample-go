@@ -44,6 +44,9 @@ func main() {
 
 	names["admin"] = "Vasya"
 	fmt.Printf("Names map: %s\n", names)
+
+	v, ok := names["admin"]
+	fmt.Println(v, ok)
 }
 
 func test(strarray ...string) error {
