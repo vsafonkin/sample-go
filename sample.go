@@ -35,12 +35,12 @@ func main() {
 
 	var nilMap map[string]int
 	fmt.Println(nilMap)
-
 	testMap := map[string]int{}
-	fmt.Println(testMap)
+	names := make(map[string]string, 5)
 
 	fmt.Println(nilMap == nil)
 	fmt.Println(testMap == nil)
+	fmt.Println(names == nil)
 
 }
 
