@@ -2,9 +2,13 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 	"time"
 )
+
+type User struct {
+	name string
+	age  int
+}
 
 func main() {
 	var currentTime = time.Now()
@@ -34,28 +38,9 @@ func main() {
 	}
 	sep()
 
-	type person struct {
-		name  string
-		age   int
-		admin bool
-	}
+	userNames := getUserNames(User{name: "bob", age: 123}, User{name: "alisa", age: 456})
+	fmt.Println(userNames)
 
-	bob := person{
-		name:  "bob",
-		age:   13,
-		admin: true,
-	}
-
-	fmt.Println(reflect.TypeOf(bob), bob)
-
-	var alisa person
-	fmt.Println(alisa)
-
-	var anonimusStruct struct {
-		str string
-	}
-
-	fmt.Println(anonimusStruct)
 }
 
 func test(strarray ...string) error {
@@ -72,4 +57,12 @@ func runSomeFunc(someFunc func(...string) error, str string) error {
 
 func sep() {
 	fmt.Printf("\n-----\n\n")
+}
+
+func getUserNames(users ...User) []string {
+	var userNames []string
+	for _, v := range users {
+		userNames = append(userNames, v.name)
+	}
+	return userNames
 }
