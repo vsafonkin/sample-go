@@ -36,6 +36,12 @@ func main() {
 	var nilMap map[string]int
 	fmt.Println(nilMap)
 
+	testMap := map[string]int{}
+	fmt.Println(testMap)
+
+	fmt.Println(nilMap == nil)
+	fmt.Println(testMap == nil)
+
 }
 
 func test(strarray ...string) error {
