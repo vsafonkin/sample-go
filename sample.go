@@ -40,8 +40,10 @@ func main() {
 
 	fmt.Println(nilMap == nil)
 	fmt.Println(testMap == nil)
-	fmt.Println(names == nil)
+	fmt.Printf("nil: %t\n", names == nil)
 
+	names["admin"] = "Vasya"
+	fmt.Printf("Names map: %s\n", names)
 }
 
 func test(strarray ...string) error {
