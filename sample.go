@@ -10,6 +10,8 @@ type User struct {
 	age  int
 }
 
+type sum func(int, int) int
+
 func main() {
 	var currentTime = time.Now()
 	fmt.Println(currentTime)
