@@ -48,6 +48,11 @@ func main() {
 
 	var sFunc sum = add
 	fmt.Println(sFunc(2, 3))
+	sep()
+
+	func() {
+		fmt.Println("anonim func")
+	}()
 
 }
 
