@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 	"time"
 )
 
@@ -47,8 +46,8 @@ func main() {
 	testArgs("hello", "goodbye")
 	emptyFunc()
 
-	var sFunc sum
-	fmt.Println(reflect.TypeOf(sFunc))
+	var sFunc sum = add
+	fmt.Println(sFunc(2, 3))
 
 }
 
