@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -46,6 +47,13 @@ func main() {
 	testArgs("hello", "goodbye")
 	emptyFunc()
 
+	var sFunc sum
+	fmt.Println(reflect.TypeOf(sFunc))
+
+}
+
+func add(a int, b int) int {
+	return a + b
 }
 
 func test(strarray ...string) error {
