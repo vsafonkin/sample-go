@@ -42,6 +42,7 @@ func main() {
 	fmt.Println(userNames)
 
 	testArgs("hello", "goodbye")
+	emptyFunc()
 
 }
 
@@ -71,4 +72,9 @@ func getUserNames(users ...User) []string {
 
 func testArgs(...string) {
 	fmt.Println("testArgs")
+}
+
+func emptyFunc() (greeting string) {
+	greeting = "hello"
+	return
 }
