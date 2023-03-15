@@ -53,6 +53,10 @@ func main() {
 	func() {
 		fmt.Println("anonim func")
 	}()
+	sep()
+
+	add123 := closure()
+	fmt.Println(add123(2))
 
 }
 
@@ -91,4 +95,11 @@ func testArgs(...string) {
 func emptyFunc() (greeting string) {
 	greeting = "hello"
 	return
+}
+
+func closure() func(int) int {
+	a := 123
+	return func(b int) int {
+		return a + b
+	}
 }
