@@ -101,7 +101,7 @@ func closure() func(int) int {
 	a := 123
 	return func(b int) int {
 		defer fmt.Println("defer")
-		fmt.Println("run")
+		fmt.Println("run a + b")
 		return a + b
 	}
 }
