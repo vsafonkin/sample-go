@@ -98,6 +98,7 @@ func emptyFunc() (greeting string) {
 }
 
 func closure() func(int) int {
+	defer fmt.Println("closure defer")
 	a := 123
 	return func(b int) int {
 		defer fmt.Println("defer")
