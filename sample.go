@@ -100,6 +100,8 @@ func emptyFunc() (greeting string) {
 func closure() func(int) int {
 	a := 123
 	return func(b int) int {
+		defer fmt.Println("defer")
+		fmt.Println("run")
 		return a + b
 	}
 }
