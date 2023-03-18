@@ -30,6 +30,11 @@ func main() {
 	fmt.Println(sampleMap)
 	modMap(sampleMap)
 	fmt.Println(sampleMap)
+
+	sampleSlice := []int{1, 2, 3}
+	fmt.Println(sampleSlice)
+	modSlice(sampleSlice)
+	fmt.Println(sampleSlice)
 }
 
 func sayHello(user User) error {
@@ -41,4 +46,10 @@ func sayHello(user User) error {
 func modMap(m map[int]string) {
 	fmt.Println("hello => goodbye")
 	m[0] = "goodbye"
+}
+
+func modSlice(s []int) {
+	for k, v := range s {
+		s[k] = v * 2
+	}
 }
