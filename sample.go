@@ -35,6 +35,15 @@ func main() {
 	fmt.Println(sampleSlice)
 	modSlice(sampleSlice)
 	fmt.Println(sampleSlice)
+
+	sliceCopy := sampleSlice[:]
+	fmt.Println(sliceCopy)
+	sliceCopy[0] = 123
+	fmt.Println(sliceCopy)
+	fmt.Println(sampleSlice)
+	sampleSlice[1] = 456
+	fmt.Println(sliceCopy)
+
 }
 
 func sayHello(user User) error {
