@@ -15,4 +15,14 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
+	bob := User{
+		name: "Bob",
+		age:  123,
+	}
+
+	fmt.Println(bob.toString())
+}
+
+func (u User) toString() string {
+	return fmt.Sprintf("User name: %s, User age: %d\n", u.name, u.age)
 }
