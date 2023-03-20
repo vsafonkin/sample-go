@@ -29,6 +29,10 @@ func main() {
 	nums := []int{1, 2, 3}
 	setFirstItem(nums, 789)
 	fmt.Println(nums)
+
+	test := make([]int, 10)
+	test = append(test, 1)
+	fmt.Println(len(test), test)
 }
 
 func (u User) toString() string {
