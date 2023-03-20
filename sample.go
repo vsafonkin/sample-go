@@ -25,6 +25,10 @@ func main() {
 	fmt.Println(bob.toString())
 	setAge(&bob, 456)
 	fmt.Println(bob.toString())
+
+	nums := []int{1, 2, 3}
+	setFirstItem(nums, 789)
+	fmt.Println(nums)
 }
 
 func (u User) toString() string {
@@ -37,4 +41,8 @@ func (u *User) setName(name string) {
 
 func setAge(user *User, age int) {
 	user.age = age
+}
+
+func setFirstItem(slice []int, newValue int) {
+	slice[0] = newValue
 }
