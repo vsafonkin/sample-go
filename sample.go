@@ -21,8 +21,21 @@ func main() {
 	}
 
 	fmt.Println(bob.toString())
+	err := bob.setName("Alisa")
+	if err != nil {
+		fmt.Println("Set name error:", err)
+	}
+	fmt.Println(bob.toString())
 }
 
 func (u User) toString() string {
 	return fmt.Sprintf("User name: %s, User age: %d\n", u.name, u.age)
+}
+
+func (u *User) setName(name string) error {
+	if u == nil {
+		return fmt.Errorf("object user is nil")
+	}
+	u.name = name
+	return nil
 }
