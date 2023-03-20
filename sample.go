@@ -23,7 +23,7 @@ func main() {
 	fmt.Println(bob.toString())
 	bob.setName("Alisa")
 	fmt.Println(bob.toString())
-	setAge(bob, 456)
+	setAge(&bob, 456)
 	fmt.Println(bob.toString())
 }
 
@@ -35,6 +35,6 @@ func (u *User) setName(name string) {
 	u.name = name
 }
 
-func setAge(user User, age int) {
+func setAge(user *User, age int) {
 	user.age = age
 }
