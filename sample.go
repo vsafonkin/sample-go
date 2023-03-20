@@ -33,6 +33,12 @@ func main() {
 	test := make([]int, 10)
 	test = append(test, 1)
 	fmt.Println(len(test), test)
+
+	clubs := map[string]string{
+		"real": "madrid",
+		"psg":  "paris",
+	}
+	fmt.Println(clubs)
 }
 
 func (u User) toString() string {
