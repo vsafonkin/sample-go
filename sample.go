@@ -27,7 +27,7 @@ func main() {
 	fmt.Println(bob.toString())
 
 	nums := []int{1, 2, 3}
-	setFirstItem(nums, 789)
+	setFirstSliceItem(nums, 789)
 	fmt.Println(nums)
 
 	test := make([]int, 10)
@@ -38,6 +38,8 @@ func main() {
 		"real": "madrid",
 		"psg":  "paris",
 	}
+	fmt.Println(clubs)
+	setFirstMapValue(clubs, "barselona")
 	fmt.Println(clubs)
 }
 
@@ -53,6 +55,13 @@ func setAge(user *User, age int) {
 	user.age = age
 }
 
-func setFirstItem(slice []int, newValue int) {
+func setFirstSliceItem(slice []int, newValue int) {
 	slice[0] = newValue
+}
+
+func setFirstMapValue(mMap map[string]string, newValue string) {
+	for k, _ := range mMap {
+		mMap[k] = newValue
+		break
+	}
 }
