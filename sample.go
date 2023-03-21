@@ -10,12 +10,10 @@ type User struct {
 	age  int
 }
 
-type Day int
-
-const (
-	Sunday Day = iota
-	Monday
-)
+type Person struct {
+	User
+	admin bool
+}
 
 func main() {
 	var currentTime = time.Now()
@@ -30,10 +28,15 @@ func main() {
 	bob.setName("Alisa")
 	fmt.Println(bob.toString())
 
-	fmt.Println(Sunday)
-	fmt.Println(Monday)
+	alisa := Person{
+		User: User{
+			name: "Alisa",
+			age:  22,
+		},
+		admin: true,
+	}
 
-	printDay(Monday)
+	fmt.Println(alisa)
 }
 
 func (u User) toString() string {
@@ -42,8 +45,4 @@ func (u User) toString() string {
 
 func (u *User) setName(name string) {
 	u.name = name
-}
-
-func printDay(day Day) {
-	fmt.Println(day)
 }
