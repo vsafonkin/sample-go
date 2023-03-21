@@ -13,7 +13,7 @@ type User struct {
 type Day int
 
 const (
-	Sunday = iota
+	Sunday Day = iota
 	Monday
 )
 
@@ -32,6 +32,8 @@ func main() {
 
 	fmt.Println(Sunday)
 	fmt.Println(Monday)
+
+	printDay(Monday)
 }
 
 func (u User) toString() string {
@@ -40,4 +42,8 @@ func (u User) toString() string {
 
 func (u *User) setName(name string) {
 	u.name = name
+}
+
+func printDay(day Day) {
+	fmt.Println(day)
 }
