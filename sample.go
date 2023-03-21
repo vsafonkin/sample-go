@@ -43,6 +43,7 @@ func main() {
 	fmt.Println(alisa.name)
 
 	fmt.Println(alisa.User.age)
+	fmt.Println(alisa.toString())
 }
 
 func (u User) toString() string {
@@ -51,4 +52,8 @@ func (u User) toString() string {
 
 func (u *User) setName(name string) {
 	u.name = name
+}
+
+func (p Person) toString() string {
+	return fmt.Sprintf("Person name: %s, Person age: %d, Person admin: %t", p.name, p.age, p.admin)
 }
