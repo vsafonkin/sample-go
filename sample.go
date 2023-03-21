@@ -10,10 +10,8 @@ type User struct {
 	age  int
 }
 
-type Person struct {
-	User
-	admin bool
-	age   int
+type Tester interface {
+	Test()
 }
 
 func main() {
@@ -29,21 +27,7 @@ func main() {
 	bob.setName("Alisa")
 	fmt.Println(bob.toString())
 
-	alisa := Person{
-		User: User{
-			name: "Alisa",
-			age:  22,
-		},
-		admin: true,
-		age:   33,
-	}
-
-	fmt.Println(alisa.toString())
-	alisa.setName("Bob")
-	fmt.Println(alisa.name)
-
-	fmt.Println(alisa.User.age)
-	fmt.Println(alisa.toString())
+	runTest(bob)
 }
 
 func (u User) toString() string {
@@ -54,6 +38,11 @@ func (u *User) setName(name string) {
 	u.name = name
 }
 
-func (p Person) toString() string {
-	return fmt.Sprintf("Person name: %s, Person age: %d, Person admin: %t", p.name, p.age, p.admin)
+func (u User) Test() {
+	fmt.Println("User Test")
+}
+
+func runTest(test Tester) error {
+	test.Test()
+	return nil
 }
