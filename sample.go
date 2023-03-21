@@ -13,6 +13,7 @@ type User struct {
 type Person struct {
 	User
 	admin bool
+	age   int
 }
 
 func main() {
@@ -34,11 +35,14 @@ func main() {
 			age:  22,
 		},
 		admin: true,
+		age:   33,
 	}
 
 	fmt.Println(alisa.toString())
 	alisa.setName("Bob")
 	fmt.Println(alisa.name)
+
+	fmt.Println(alisa.User.age)
 }
 
 func (u User) toString() string {
