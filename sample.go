@@ -10,6 +10,13 @@ type User struct {
 	age  int
 }
 
+type Day int
+
+const (
+	Sunday = iota
+	Monday
+)
+
 func main() {
 	var currentTime = time.Now()
 	fmt.Println(currentTime)
@@ -23,6 +30,8 @@ func main() {
 	bob.setName("Alisa")
 	fmt.Println(bob.toString())
 
+	fmt.Println(Sunday)
+	fmt.Println(Monday)
 }
 
 func (u User) toString() string {
