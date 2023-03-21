@@ -37,6 +37,8 @@ func main() {
 	}
 
 	fmt.Println(alisa.toString())
+	alisa.setName("Bob")
+	fmt.Println(alisa.name)
 }
 
 func (u User) toString() string {
