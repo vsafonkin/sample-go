@@ -36,7 +36,7 @@ func main() {
 		admin: true,
 	}
 
-	fmt.Println(alisa)
+	fmt.Println(alisa.toString())
 }
 
 func (u User) toString() string {
