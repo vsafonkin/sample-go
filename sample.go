@@ -28,6 +28,13 @@ func main() {
 	fmt.Println(bob.toString())
 
 	runTest(bob)
+
+	data := map[string]interface{}{
+		"a": "hello",
+		"b": 123,
+	}
+	data["c"] = true
+	fmt.Println(data)
 }
 
 func (u User) toString() string {
