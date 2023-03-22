@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -28,6 +29,9 @@ func main() {
 	fmt.Println(bob.toString())
 
 	runTest(bob)
+	fmt.Println("-----")
+	out := anyType(bob)
+	fmt.Println(reflect.TypeOf(out), out)
 }
 
 func (u User) toString() string {
@@ -45,4 +49,13 @@ func (u User) Test() {
 func runTest(test Tester) error {
 	test.Test()
 	return nil
+}
+
+func anyType(obj interface{}) interface{} {
+	fmt.Println(reflect.TypeOf(obj), obj)
+	type Sample struct {
+		a int
+	}
+	var sample Sample
+	return sample
 }
