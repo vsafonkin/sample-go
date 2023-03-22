@@ -57,5 +57,6 @@ func anyType(obj interface{}) interface{} {
 		a int
 	}
 	var sample Sample
+	sample.a = 123
 	return sample
 }
