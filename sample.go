@@ -35,6 +35,11 @@ func main() {
 	}
 	data["c"] = true
 	fmt.Println(data)
+
+	sample := make(map[string]int, 10)
+	fmt.Println(len(sample), sample)
+	sample["test"] = 123
+	fmt.Println(len(sample), sample)
 }
 
 func (u User) toString() string {
