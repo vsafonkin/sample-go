@@ -24,4 +24,7 @@ func main() {
 		age:  123,
 	}
 	fmt.Println(bob)
+
+	var tester Tester
+	fmt.Println(tester)
 }
