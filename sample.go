@@ -25,6 +25,16 @@ func main() {
 	}
 	fmt.Println(bob)
 
-	var tester Tester
-	fmt.Println(tester)
+	var tester Tester = bob
+	runTest(tester)
+
+}
+
+func runTest(tester Tester) error {
+	tester.Test()
+	return nil
+}
+
+func (u User) Test() {
+	fmt.Println("User test method")
 }
