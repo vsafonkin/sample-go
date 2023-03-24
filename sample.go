@@ -33,6 +33,9 @@ func main() {
 
 	sayHello(tester.(User))
 
+	t := tester.(User)
+	fmt.Println(t)
+
 }
 
 func runTest(tester Tester) error {
