@@ -27,6 +27,8 @@ func main() {
 
 	var tester Tester = bob
 	runTest(tester)
+	i := tester.(User)
+	fmt.Println(i)
 
 }
 
