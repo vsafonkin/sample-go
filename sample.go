@@ -20,7 +20,7 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	matched, err := regexp.MatchString("l.", "hello world")
+	matched, err := regexp.MatchString("a+b=c", "a+b=c")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -31,6 +31,6 @@ func main() {
 		fmt.Println(err)
 	}
 
-	result := reg.FindString("hello hew heew")
+	result := reg.FindAllString("hello hew heew ohowa", -1)
 	fmt.Println(result)
 }
