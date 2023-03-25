@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"regexp"
 	"time"
 )
 
@@ -19,4 +20,17 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
+	matched, err := regexp.MatchString("l.", "hello world")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(matched)
+
+	reg, err := regexp.Compile("h.?w")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	result := reg.FindString("hello hew heew")
+	fmt.Println(result)
 }
