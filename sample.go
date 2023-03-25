@@ -32,11 +32,7 @@ func main() {
 	runTest(tester)
 
 	sayHello(tester.(User))
-
-	t := tester.(User)
-	fmt.Println(t)
-
-	runTest(t)
+	runTest(tester.(User))
 
 }
 
