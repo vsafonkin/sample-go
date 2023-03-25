@@ -33,4 +33,8 @@ func main() {
 
 	result := reg.FindAllString("hello hew heew ohowa", -1)
 	fmt.Println(result)
+
+	reg, _ = regexp.Compile(`\d+?`)
+	result = reg.FindAllString("a123b456c789", -1)
+	fmt.Println(result)
 }
