@@ -36,6 +36,8 @@ func main() {
 	t := tester.(User)
 	fmt.Println(t)
 
+	runTest(t)
+
 }
 
 func runTest(tester Tester) error {
