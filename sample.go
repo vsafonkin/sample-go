@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	var currentTime = time.Now()
+	currentTime := time.Now()
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
