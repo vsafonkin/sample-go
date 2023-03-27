@@ -10,7 +10,7 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	slc := []int{}
+	slc := []int{7, 8, 9}
 	err := setFirstElement(slc, 123)
 	if err != nil {
 		fmt.Println(err)
