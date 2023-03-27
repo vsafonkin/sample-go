@@ -14,6 +14,8 @@ type Admin struct {
 	age int
 }
 
+type MyString string
+
 func main() {
 	currentTime := time.Now()
 	fmt.Println(currentTime)
@@ -29,6 +31,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	hello := MyString("hello")
+	fmt.Printf("%T\n", hello)
+	fmt.Println(hello[0:2])
 }
 
 func (u User) sayHello() error {
