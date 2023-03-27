@@ -5,26 +5,30 @@ import (
 	"time"
 )
 
+type User struct {
+	name string
+}
+
+type Admin struct {
+	User
+	age int
+}
+
 func main() {
 	currentTime := time.Now()
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	slc := []int{7, 8, 9}
-	err := setFirstElement(slc, 123)
-	if err != nil {
-		fmt.Println(err)
+	bob := User{
+		name: "Bob",
 	}
-	fmt.Println(slc)
+	bob.sayHello()
 }
 
-func setFirstElement(slice []int, num int) error {
-	if slice == nil {
-		return fmt.Errorf("error! slice is nil")
+func (u User) sayHello() error {
+	if u.name == "" {
+		return fmt.Errorf("User name is empty string")
 	}
-	if len(slice) == 0 {
-		return fmt.Errorf("error! slice len is zero")
-	}
-	slice[0] = num
+	fmt.Printf("Hello, %s\n", u.name)
 	return nil
 }
