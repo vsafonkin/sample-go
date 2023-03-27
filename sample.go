@@ -23,6 +23,12 @@ func main() {
 		name: "Bob",
 	}
 	bob.sayHello()
+
+	alisa := Admin{}
+	err := alisa.sayHello()
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func (u User) sayHello() error {
