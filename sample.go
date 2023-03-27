@@ -33,7 +33,7 @@ func main() {
 
 func (u User) sayHello() error {
 	if u.name == "" {
-		return fmt.Errorf("User name is empty string")
+		return fmt.Errorf("user name is empty string")
 	}
 	fmt.Printf("Hello, %s\n", u.name)
 	return nil
