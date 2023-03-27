@@ -1,3 +1,3 @@
-module github.com/vsafonkin
+module github.com/vsafonkin/sample-go
 
-go 1.20
+go 1.17
