@@ -9,6 +9,10 @@ type User struct {
 	age  int
 }
 
+func init() {
+	fmt.Println("Init func of user package")
+}
+
 func (u User) SayHello() error {
 	if u.Name == "" {
 		return fmt.Errorf("error! user name is empty")
