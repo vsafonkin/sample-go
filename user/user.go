@@ -6,6 +6,7 @@ import (
 
 type User struct {
 	Name string
+	age  int
 }
 
 func (u User) SayHello() error {
@@ -14,4 +15,13 @@ func (u User) SayHello() error {
 	}
 	fmt.Printf("Hello, %s\n", u.Name)
 	return nil
+}
+
+func (u *User) SetUserAge(age int) error {
+	u.age = age
+	return nil
+}
+
+func (u User) GetUserAge() int {
+	return u.age
 }

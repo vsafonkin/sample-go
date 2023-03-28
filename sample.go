@@ -17,4 +17,8 @@ func main() {
 	}
 
 	bob.SayHello()
+	fmt.Println(bob)
+
+	bob.SetUserAge(123)
+	fmt.Println(bob)
 }
