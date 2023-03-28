@@ -21,4 +21,10 @@ func main() {
 
 	bob.SetUserAge(123)
 	fmt.Println(bob)
+
+	var alisa user.User
+	fmt.Println(alisa)
+	alisa.Name = "Alisa"
+	alisa.SetUserAge(456)
+	fmt.Println(alisa)
 }
