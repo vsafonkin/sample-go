@@ -35,5 +35,5 @@ func (u User) RunUserTest() {
 }
 
 func (u User) DoNothing() {
-	fmt.Println("Do nothing v1.0.1")
+	fmt.Println("Do nothing v1.0.2")
 }
