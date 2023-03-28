@@ -29,3 +29,7 @@ func (u *User) SetUserAge(age int) error {
 func (u User) GetUserAge() int {
 	return u.age
 }
+
+func (u User) RunUserTest() {
+	fmt.Println("RunUserTest method")
+}
