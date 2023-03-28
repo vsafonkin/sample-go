@@ -33,3 +33,7 @@ func (u User) GetUserAge() int {
 func (u User) RunUserTest() {
 	fmt.Println("RunUserTest method")
 }
+
+func (u User) DoNothing() {
+	fmt.Println("Do nothing")
+}
