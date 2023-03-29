@@ -22,6 +22,9 @@ func main() {
 	if v, ok := table["hello"]; ok {
 		fmt.Println(v)
 	}
+
+	var c chan int
+	fmt.Println(c == nil)
 }
 
 func run(id int, ch chan<- int) {
