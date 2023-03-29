@@ -17,7 +17,18 @@ func main() {
 		ch <- time.Now()
 	}()
 
+	ich := make(chan int)
+	run(ich)
 	b := <-ch
 	fmt.Println(b)
+
+	i := <-ich
+	fmt.Println(i)
 	fmt.Println("end")
+}
+
+func run(ch chan<- int) {
+	go func() {
+		ch <- 123
+	}()
 }
