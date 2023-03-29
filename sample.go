@@ -19,11 +19,9 @@ func main() {
 
 	ich := make(chan int)
 	run(ich)
-	b := <-ch
-	fmt.Println(b)
+	fmt.Println(<-ch)
 
-	i := <-ich
-	fmt.Println(i)
+	fmt.Println(<-ich)
 	fmt.Println("end")
 }
 
