@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/vsafonkin/sample-go/apiserver"
 	"github.com/vsafonkin/sample-go/user"
 )
 
@@ -27,4 +28,7 @@ func main() {
 	alisa.Name = "Alisa"
 	alisa.SetUserAge(456)
 	fmt.Println(alisa)
+
+	apiserver := apiserver.NewAPIServer()
+	fmt.Println(apiserver)
 }
