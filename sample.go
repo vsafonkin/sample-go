@@ -30,5 +30,7 @@ func main() {
 	fmt.Println(alisa)
 
 	apiserver := apiserver.NewAPIServer()
-	fmt.Println(apiserver)
+	if err := apiserver.StartServer(); err != nil {
+		fmt.Println(err)
+	}
 }

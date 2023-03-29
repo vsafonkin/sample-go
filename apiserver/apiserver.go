@@ -12,3 +12,8 @@ func NewAPIServer() APIServer {
 		port: "8080",
 	}
 }
+
+func (apis *APIServer) StartServer() error {
+	fmt.Println("Start API server")
+	return nil
+}
