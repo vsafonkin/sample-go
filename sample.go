@@ -10,23 +10,18 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	ch := make(chan time.Time)
+	ch := make(chan int)
+	run(123, ch)
+	run(456, ch)
+	run(789, ch)
 
-	go func() {
-		time.Sleep(1 * time.Second)
-		ch <- time.Now()
-	}()
-
-	ich := make(chan int)
-	run(ich)
 	fmt.Println(<-ch)
-
-	fmt.Println(<-ich)
-	fmt.Println("end")
+	time.Sleep(2 * time.Second)
 }
 
-func run(ch chan<- int) {
+func run(id int, ch chan<- int) {
 	go func() {
-		ch <- 123
+		ch <- id
+		fmt.Printf("End goroutine id: %d\n", id)
 	}()
 }
