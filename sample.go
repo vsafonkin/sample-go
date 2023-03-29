@@ -3,9 +3,6 @@ package main
 import (
 	"fmt"
 	"time"
-
-	"github.com/vsafonkin/sample-go/apiserver"
-	"github.com/vsafonkin/sample-go/user"
 )
 
 func main() {
@@ -13,24 +10,13 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	bob := user.User{
-		Name: "Bob",
-	}
+	ch := make(chan time.Time)
 
-	bob.SayHello()
-	fmt.Println(bob)
+	go func() {
+		ch <- time.Now()
+	}()
 
-	bob.SetUserAge(123)
-	fmt.Println(bob)
-
-	var alisa user.User
-	fmt.Println(alisa)
-	alisa.Name = "Alisa"
-	alisa.SetUserAge(456)
-	fmt.Println(alisa)
-
-	apiserver := apiserver.NewAPIServer()
-	if err := apiserver.StartServer(); err != nil {
-		fmt.Println(err)
-	}
+	b := <-ch
+	fmt.Println(b)
+	fmt.Println("end")
 }
