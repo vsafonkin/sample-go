@@ -15,19 +15,18 @@ func main() {
 	run(456, ch)
 	run(789, ch)
 
-	for v := range ch {
+	fmt.Println(<-ch)
+
+	table := map[string]int{}
+	fmt.Println(table["hello"])
+	if v, ok := table["hello"]; ok {
 		fmt.Println(v)
 	}
 }
 
 func run(id int, ch chan<- int) {
-	i := id
 	go func() {
 		ch <- id
-		if i == 789 {
-			time.Sleep(2 * time.Second)
-			close(ch)
-		}
 		fmt.Printf("End goroutine id: %d\n", id)
 	}()
 }
