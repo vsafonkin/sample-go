@@ -13,7 +13,7 @@ func main() {
 	ch := make(chan time.Time)
 
 	go func() {
-		time.Sleep(3 * time.Second)
+		time.Sleep(1 * time.Second)
 		ch <- time.Now()
 	}()
 
