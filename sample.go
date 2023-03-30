@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -10,26 +11,22 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	ch := make(chan int)
-	run(123, ch)
-	run(456, ch)
-	run(789, ch)
+	fmt.Println(getRandomInt(100))
 
-	fmt.Println(<-ch)
-
-	table := map[string]int{}
-	fmt.Println(table["hello"])
-	if v, ok := table["hello"]; ok {
-		fmt.Println(v)
-	}
-
-	var c chan int
-	fmt.Println(c == nil)
 }
 
-func run(id int, ch chan<- int) {
-	go func() {
-		ch <- id
-		fmt.Printf("End goroutine id: %d\n", id)
-	}()
+func getRandomInt(n int) int {
+	done := make(chan struct{})
+	ch := make(chan int)
+	for i := 0; i < n; i++ {
+		go func() {
+			select {
+			case ch <- rand.Intn(1000):
+			case <-done:
+			}
+		}()
+	}
+	result := <-ch
+	close(done)
+	return result
 }
