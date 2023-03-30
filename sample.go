@@ -21,7 +21,7 @@ func main() {
 		id := i
 		go func() {
 			defer wg.Done()
-			rnum := rand.Intn(1000)
+			rnum := rand.Intn(3000)
 			time.Sleep(time.Duration(rnum) * time.Millisecond)
 			fmt.Printf("Close grt %d, interval %d ms\n", id, rnum)
 			out <- rnum
