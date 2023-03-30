@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sync"
 	"time"
 )
 
@@ -11,22 +12,16 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	fmt.Println(getRandomInt(100))
+	var wg sync.WaitGroup
+	wg.Add(10)
 
-}
-
-func getRandomInt(n int) int {
-	done := make(chan struct{})
-	ch := make(chan int)
-	for i := 0; i < n; i++ {
+	for i := 0; i < 10; i++ {
+		id := i
 		go func() {
-			select {
-			case ch <- rand.Intn(1000):
-			case <-done:
-			}
+			defer wg.Done()
+			time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
+			fmt.Printf("Close grt %d\n", id)
 		}()
 	}
-	result := <-ch
-	close(done)
-	return result
+	wg.Wait()
 }
