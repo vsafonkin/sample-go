@@ -13,16 +13,29 @@ func main() {
 	fmt.Printf("-----\n\n")
 
 	var wg sync.WaitGroup
-	wg.Add(10)
+	num := 10
+	wg.Add(num)
 
-	for i := 0; i < 10; i++ {
+	out := make(chan int, num)
+	for i := 0; i < num; i++ {
 		id := i
 		go func() {
 			defer wg.Done()
 			rnum := rand.Intn(1000)
 			time.Sleep(time.Duration(rnum) * time.Millisecond)
 			fmt.Printf("Close grt %d, interval %d ms\n", id, rnum)
+			out <- rnum
 		}()
 	}
-	wg.Wait()
+	go func() {
+		wg.Wait()
+		close(out)
+	}()
+
+	var result []int
+	for v := range out {
+		result = append(result, v)
+	}
+
+	fmt.Printf("Result: %v\n", result)
 }
