@@ -16,7 +16,7 @@ func main() {
 	num := 10
 	wg.Add(num)
 
-	out := make(chan int, num)
+	out := make(chan int)
 	for i := 0; i < num; i++ {
 		id := i
 		go func() {
