@@ -8,10 +8,17 @@ import (
 )
 
 type User struct {
-	Id       int    `json:"id"`
-	Name     string `json:"name"`
-	Username string `json:"username"`
-	Email    string `json:"email"`
+	Id       int     `json:"id"`
+	Name     string  `json:"name"`
+	Username string  `json:"username"`
+	Email    string  `json:"email"`
+	Address  Address `json:"address"`
+}
+
+type Address struct {
+	City    string `json:"city"`
+	Street  string `json:"street"`
+	ZipCode string `json:"zipcode"`
 }
 
 type Users []User
