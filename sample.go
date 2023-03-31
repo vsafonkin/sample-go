@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"time"
 )
 
@@ -31,6 +32,8 @@ func main() {
 	users := Users{}
 	users.loadUserData("users.json")
 	fmt.Printf("%+v\n", users)
+
+	users.writeToJsonFile("sample.json")
 }
 
 func (users *Users) loadUserData(path string) error {
@@ -40,6 +43,23 @@ func (users *Users) loadUserData(path string) error {
 	}
 
 	err = json.Unmarshal(dataFile, users)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (users *Users) writeToJsonFile(path string) error {
+	outputFile, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer outputFile.Close()
+	data, err := json.Marshal(users)
+	if err != nil {
+		return err
+	}
+	_, err = outputFile.Write(data)
 	if err != nil {
 		return err
 	}
