@@ -23,5 +23,5 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-    - name: out data
+    - name: Output data
       run: cat sample.json | jq
