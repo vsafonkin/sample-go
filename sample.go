@@ -30,7 +30,7 @@ func main() {
 
 	users := Users{}
 	users.loadUserData("users.json")
-	fmt.Println(users)
+	fmt.Printf("%+v\n", users)
 }
 
 func (users *Users) loadUserData(path string) error {
