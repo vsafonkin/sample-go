@@ -13,4 +13,6 @@ func main() {
 	fmt.Printf("-----\n\n")
 
 	nilvalue.ZeroValues()
+	fmt.Println("-----")
+	nilvalue.NilValues()
 }
