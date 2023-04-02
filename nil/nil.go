@@ -26,6 +26,7 @@ type Sample struct {
 	fn  DoSomething
 }
 
+// Represent zero values for bool, int, float, string and rune
 func ZeroValues() {
 	fmt.Printf("Init values:\nbool: %t\nint: %d\nfloat: %f\nstring: %s\nrune: %q\n", b, i, f, str, r)
 }
@@ -43,4 +44,5 @@ func NilValues() {
 func Run() {
 	sample := Sample{}
 	fmt.Println(sample)
+
 }
