@@ -20,6 +20,12 @@ var ch chan int
 var fn DoSomething
 var smint SomeInterface
 
+type Sample struct {
+	num int
+	slc []int
+	fn  DoSomething
+}
+
 func ZeroValues() {
 	fmt.Printf("Init values:\nbool: %t\nint: %d\nfloat: %f\nstring: %s\nrune: %q\n", b, i, f, str, r)
 }
@@ -32,4 +38,9 @@ func NilValues() {
 	fmt.Printf("channel == nil: %t\n", ch == nil)
 	fmt.Printf("function == nil: %t\n", fn == nil)
 	fmt.Printf("interface == nil: %t\n", smint == nil)
+}
+
+func Run() {
+	sample := Sample{}
+	fmt.Println(sample)
 }

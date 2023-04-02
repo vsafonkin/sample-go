@@ -15,4 +15,6 @@ func main() {
 	nilvalue.ZeroValues()
 	fmt.Println("-----")
 	nilvalue.NilValues()
+	fmt.Println("-----")
+	nilvalue.Run()
 }
