@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"time"
+
+	nilvalue "github.com/vsafonkin/sample-go/nil"
 )
 
 func main() {
@@ -10,4 +12,5 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
+	nilvalue.ZeroValues()
 }
