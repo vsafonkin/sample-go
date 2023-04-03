@@ -22,4 +22,6 @@ func main() {
 	r := '\u00BE'
 	fmt.Println(r)
 	fmt.Printf("Type: %T, value: %#[1]q\n", r)
+	str := "\u212E\x41"
+	fmt.Println(str)
 }
