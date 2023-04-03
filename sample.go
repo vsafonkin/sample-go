@@ -19,9 +19,9 @@ func main() {
 	f := 1.234e2
 	fmt.Printf("Type: %T, value: %#[1]f\n", f)
 
-	r := '\u00BE'
+	r := '\U000000BE'
 	fmt.Println(r)
 	fmt.Printf("Type: %T, value: %#[1]q\n", r)
-	str := "\u212E\x41"
+	str := "\u212E\x41\U0000212E"
 	fmt.Println(str)
 }
