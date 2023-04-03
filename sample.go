@@ -15,4 +15,11 @@ func main() {
 	num := 228
 	fmt.Println(b, x)
 	fmt.Printf("decimal: %d, bin: %#[1]b, hex:%#[1]x\n", num)
+
+	f := 1.234e2
+	fmt.Printf("Type: %T, value: %#[1]f\n", f)
+
+	r := '\u00BE'
+	fmt.Println(r)
+	fmt.Printf("Type: %T, value: %#[1]q\n", r)
 }
