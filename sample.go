@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	nilvalue "github.com/vsafonkin/sample-go/nil"
+	"github.com/vsafonkin/sample-go/stdlib_json"
 )
 
 func main() {
@@ -12,9 +12,10 @@ func main() {
 	fmt.Println(currentTime)
 	fmt.Printf("-----\n\n")
 
-	nilvalue.ZeroValues()
-	fmt.Println("-----")
-	nilvalue.NilValues()
-	fmt.Println("-----")
-	nilvalue.Run()
+	usersData := stdlib_json.Users{}
+	err := usersData.LoadUserData("./test_data/users.json")
+	if err != nil {
+		fmt.Println("error: ", err)
+	}
+	fmt.Printf("Users data: %+v\n", usersData)
 }
