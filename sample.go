@@ -24,4 +24,8 @@ func main() {
 	fmt.Printf("Type: %T, value: %#[1]q\n", r)
 	str := "\u212E\x41\U0000212E"
 	fmt.Println(str)
+
+	a := rune(8494)
+
+	fmt.Printf("%c\n", a)
 }
