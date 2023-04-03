@@ -22,5 +22,3 @@ jobs:
 
     - name: Test
       run: go test -v ./...
-
-    - run: cat ./test_data/new_users.json | jq
