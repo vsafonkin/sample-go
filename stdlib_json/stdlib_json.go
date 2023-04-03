@@ -33,3 +33,21 @@ func (u *Users) LoadUserData(path string) error {
 	}
 	return nil
 }
+
+func (u *Users) WriteDataToFile(path string) error {
+	f, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	data, err := json.Marshal(u)
+	if err != nil {
+		return err
+	}
+	_, err = f.Write(data)
+	if err != nil {
+		return nil
+	}
+	return nil
+}

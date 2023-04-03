@@ -18,4 +18,5 @@ func main() {
 		fmt.Println("error: ", err)
 	}
 	fmt.Printf("Users data: %+v\n", usersData)
+	usersData.WriteDataToFile("./test_data/new_users.json")
 }
