@@ -2,30 +2,16 @@ package main
 
 import (
 	"fmt"
-	"time"
+
+	"github.com/vsafonkin/sample-go/user"
 )
 
 func main() {
-	currentTime := time.Now()
-	fmt.Println(currentTime)
-	fmt.Printf("-----\n\n")
 
-	b := 0b11100100
-	x := 0xE4
-	num := 228
-	fmt.Println(b, x)
-	fmt.Printf("decimal: %d, bin: %#[1]b, hex:%#[1]x\n", num)
+	bob := user.User{
+		Name: "Bob",
+	}
+	bob.SetUserAge(123)
 
-	f := 1.234e2
-	fmt.Printf("Type: %T, value: %#[1]f\n", f)
-
-	r := '\U000000BE'
-	fmt.Println(r)
-	fmt.Printf("Type: %T, value: %#[1]q\n", r)
-	str := "\u212E\x41\U0000212E"
-	fmt.Println(str)
-
-	a := rune(8494)
-
-	fmt.Printf("%c\n", a)
+	fmt.Printf("%#v\n", bob)
 }
