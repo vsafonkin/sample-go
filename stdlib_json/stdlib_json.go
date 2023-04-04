@@ -47,7 +47,7 @@ func (u *Users) WriteDataToFile(path string) error {
 	}
 	_, err = f.Write(data)
 	if err != nil {
-		return nil
+		return err
 	}
 	return nil
 }
