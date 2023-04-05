@@ -3,7 +3,7 @@ package cmpble
 import "fmt"
 
 type Runner interface {
-	RunSomething(i int) // Interface is comparable
+	RunSomething() // Interface is comparable
 }
 
 type Tester interface {
