@@ -4,6 +4,14 @@ import (
 	"fmt"
 )
 
+type Gen[T any, V int | string | bool, F any] struct {
+	First  T
+	Second V
+	Fn     F
+}
+
+type Fn func(num int) error
+
 func HandleMap[K comparable, V any](m map[K]V) ([]K, []V) {
 	var keys []K
 	var values []V
@@ -32,5 +40,15 @@ func Run() error {
 	slc_2 := []int{7, 11, 13}
 	HandleSlice("Hello", slc)
 	HandleSlice(1.2e3, slc_2)
+	fmt.Println("-----")
+
+	gen := Gen[bool, string, Fn]{
+		First:  true,
+		Second: "Hello",
+		Fn:     func(num int) error { return nil },
+	}
+
+	fmt.Println(gen)
+
 	return nil
 }
