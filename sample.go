@@ -4,26 +4,26 @@ import (
 	"fmt"
 )
 
-type Fn func(str string) int
+type Fn func()
 
 func main() {
 	fmt.Println("-----")
 
-	doSomething, counter := initFnCounter(func(str string) int { return len(str) })
+	DoSomething, counter := func() (Fn, *int) {
+		var counter int
+		return func() {
+			counter++
+			DoSomething()
+		}, &counter
+	}()
 	fmt.Println(*counter)
-	fmt.Printf("Len: %d\n", doSomething("hello"))
-	fmt.Printf("Len: %d\n", doSomething("goodbye"))
-	fmt.Printf("Len: %d\n", doSomething("aloha"))
+	DoSomething()
 	fmt.Println(*counter)
-	fmt.Printf("Len: %d\n", doSomething("golang"))
+	DoSomething()
+	DoSomething()
 	fmt.Println(*counter)
-
 }
 
-func initFnCounter(fn Fn) (Fn, *int) {
-	var counter int
-	return func(str string) int {
-		counter++
-		return fn(str)
-	}, &counter
+func DoSomething() {
+	fmt.Println("Do something")
 }
