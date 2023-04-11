@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+type mSlc []int
+
 func main() {
 	fmt.Println("-----")
 	slc := []int{1, 2, 3}
@@ -17,6 +19,9 @@ func main() {
 
 	mHelloKey(m)
 	fmt.Printf("%+v\n", m)
+
+	var mslc mSlc
+	fmt.Println(mslc.getLen())
 }
 
 func setFirst(slc []int) error {
@@ -33,4 +38,8 @@ func mHelloKey(m map[string]int) error {
 	}
 	m["hello"] = 789
 	return nil
+}
+
+func (mslc mSlc) getLen() int {
+	return len(mslc)
 }
