@@ -8,13 +8,22 @@ type Runner interface {
 	Run() error
 }
 
-type Test int
+type Tester interface {
+	StartTest() error
+}
+
+type Process struct {
+	id int
+	Runner
+	Tester
+}
 
 func main() {
 	fmt.Println("-----")
 
-	var runner Test
-	err := Exec(runner)
+	var p Process
+	fmt.Printf("id: %d\n", p.id)
+	err := Exec(p)
 	fmt.Println(err)
 }
 
@@ -22,7 +31,7 @@ func Exec(runner Runner) error {
 	return runner.Run()
 }
 
-func (t Test) Run() error {
+func (a Process) Run() error {
 	fmt.Println("Test m")
 	return nil
 }
