@@ -2,11 +2,19 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
+
+type Runner struct{}
 
 func main() {
 	fmt.Println("-----")
 
-	fmt.Println(os.Getenv("HOME"))
+	var runner *Runner
+	fmt.Println(runner == nil)
+	runner.run()
+}
+
+func (r *Runner) run() error {
+	fmt.Println("Run...")
+	return nil
 }
