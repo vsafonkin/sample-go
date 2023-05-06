@@ -4,13 +4,15 @@ import (
 	"fmt"
 )
 
-type Runner struct{}
+type Runner struct {
+	id int
+}
 
 func main() {
 	fmt.Println("-----")
 
 	var runner *Runner
-	fmt.Println(runner == nil)
+	fmt.Println(runner, runner == nil)
 	runner.run()
 }
 
