@@ -10,7 +10,7 @@ import (
 func main() {
 	fmt.Println("-----")
 
-	n := 1_000_000
+	n := 10_000_000
 	fmt.Printf("Total time string concat: %v\n", funcExecTimeDuration(runStringConcat, n))
 	fmt.Printf("Total time string builder: %v\n", funcExecTimeDuration(runStringBuilder, n))
 }
