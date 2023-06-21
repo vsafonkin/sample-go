@@ -14,4 +14,12 @@ func main() {
 	r := '\uEA12'
 
 	fmt.Println(n, x, b, f, r)
+
+	str := `
+	Hello
+	"Goodbye"
+	\n\t\r
+	`
+
+	fmt.Println(str)
 }
