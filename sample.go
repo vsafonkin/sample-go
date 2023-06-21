@@ -15,6 +15,9 @@ func main() {
 
 	fmt.Println(n, x, b, f, r)
 
+	s := 123 + 1.23 + '\uEA12'
+	fmt.Println(s)
+
 	str := `
 	Hello
 	"Goodbye"
