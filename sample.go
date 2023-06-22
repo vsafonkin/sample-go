@@ -25,4 +25,8 @@ func main() {
 	`
 
 	fmt.Println(str)
+
+	for i := range [5]int{} {
+		fmt.Println(i)
+	}
 }
