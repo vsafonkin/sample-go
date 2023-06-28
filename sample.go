@@ -16,5 +16,4 @@ func main() {
 			fmt.Printf("index: %d, len: %d, cap: %d\n", i, len(arr), cap(arr))
 		}
 	}
-
 }
