@@ -7,6 +7,14 @@ import (
 func main() {
 	fmt.Println("hello")
 
-	var r rune
-	fmt.Printf("%d %[1]c %[1]T\n", r)
+	var arr []int
+
+	for i := range [1_000_000]struct{}{} {
+		temp := cap(arr)
+		arr = append(arr, i)
+		if temp != cap(arr) {
+			fmt.Printf("index: %d, len: %d, cap: %d\n", i, len(arr), cap(arr))
+		}
+	}
+
 }
