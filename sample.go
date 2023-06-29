@@ -7,13 +7,9 @@ import (
 func main() {
 	fmt.Println("hello")
 
-	var arr []int
+	var nums []int
+	var b = []bool{true, false}
+	names := []string{}
 
-	for i := range [1_000_000]struct{}{} {
-		temp := cap(arr)
-		arr = append(arr, i)
-		if temp != cap(arr) {
-			fmt.Printf("index: %d, len: %d, cap: %d\n", i, len(arr), cap(arr))
-		}
-	}
+	fmt.Println(nums, b, names)
 }
