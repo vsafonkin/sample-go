@@ -20,4 +20,12 @@ func main() {
 	if v, ok := m["goodbye"]; ok {
 		fmt.Println(ok, v)
 	}
+
+	mSet := map[int]bool{}
+	values := []int{1, 3, 5, 3, 7, 13, 5, 11, 7}
+	for _, v := range values {
+		mSet[v] = true
+	}
+
+	fmt.Printf("%v\n", mSet)
 }
