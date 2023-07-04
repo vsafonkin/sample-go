@@ -26,4 +26,12 @@ func main() {
 
 	mike := User{"Mike", 456, []int{4, 5, 6}}
 	fmt.Println(mike)
+
+	anonim := struct {
+		name string
+	}{
+		name: "John",
+	}
+
+	fmt.Println(anonim)
 }
