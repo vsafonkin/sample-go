@@ -4,28 +4,23 @@ import (
 	"fmt"
 )
 
+type User struct {
+	name string
+	age  int
+	nums []int
+}
+
 func main() {
 	fmt.Println("hello")
 
-	m := make(map[string]int, 0)
-	m["hello"] = 123
-	fmt.Println(m)
-	m["hello"]++
-	fmt.Println(m)
-
-	if v, ok := m["hello"]; ok {
-		fmt.Println(ok, v)
+	bob := User{
+		name: "Bob",
+		age:  123,
+		nums: []int{1, 2, 3},
 	}
 
-	if v, ok := m["goodbye"]; ok {
-		fmt.Println(ok, v)
-	}
+	var alisa User
 
-	mSet := map[int]bool{}
-	values := []int{1, 3, 5, 3, 7, 13, 5, 11, 7}
-	for _, v := range values {
-		mSet[v] = true
-	}
-
-	fmt.Printf("%v\n", mSet)
+	fmt.Println(bob)
+	fmt.Println(alisa, alisa.nums == nil)
 }
