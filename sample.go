@@ -7,7 +7,6 @@ import (
 type User struct {
 	name string
 	age  int
-	nums []int
 }
 
 func main() {
@@ -16,16 +15,15 @@ func main() {
 	bob := User{
 		name: "Bob",
 		age:  123,
-		nums: []int{1, 2, 3},
 	}
 
 	var alisa User
 
 	fmt.Println(bob)
-	fmt.Println(alisa, alisa.nums == nil)
+	fmt.Println(alisa)
 
-	mike := User{"Mike", 456, []int{4, 5, 6}}
-	fmt.Println(mike)
+	mike := User{"Bob", 123}
+	fmt.Println(mike == bob)
 
 	anonim := struct {
 		name string
