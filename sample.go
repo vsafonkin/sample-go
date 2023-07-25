@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	fmt.Println("hello")
+	fmt.Println("hello, pointers")
 
 	var p *int
 	fmt.Println(p == nil)
