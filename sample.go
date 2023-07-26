@@ -4,22 +4,25 @@ import (
 	"fmt"
 )
 
+type User struct {
+	name string
+	age  int
+}
+
 func main() {
-	fmt.Println("hello, pointers")
+	fmt.Println("hello")
 
-	arr := [3]int{1, 2, 3}
-	arrCopy := arr
+	bob := User{
+		name: "Bob",
+		age:  123,
+	}
 
-	fmt.Printf("arr: %v\narrCopy: %v\n", arr, arrCopy)
-	arr[0] = 789
-	fmt.Printf("arr: %v\narrCopy: %v\n", arr, arrCopy)
+	sayHello(&bob)
+	fmt.Printf("---\n%+v\n", bob)
+}
 
-	slc := []int{1, 2, 3}
-	slcCopy := slc
-
-	fmt.Printf("slc: %v\nslcCopy: %v\n", slc, slcCopy)
-	slc[0] = 789
-	fmt.Printf("slc: %v\nslcCopy: %v\n", slc, slcCopy)
-	slcCopy[0] = 456
-	fmt.Printf("slc: %v\nslcCopy: %v\n", slc, slcCopy)
+func sayHello(user *User) {
+	fmt.Printf("Hello, %s\n", user.name)
+	user.name = "Alisa"
+	user.age = 456
 }
