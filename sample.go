@@ -13,6 +13,7 @@ func main() {
 	fmt.Println("hello")
 
 	var bob *User
+	fmt.Println(bob == nil)
 	bob.test()
 }
 
