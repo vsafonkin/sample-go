@@ -4,20 +4,20 @@ import (
 	"fmt"
 )
 
-type Runner interface {
-	Run()
-}
-
-type Test struct{}
+type TestError struct{}
 
 func main() {
 	fmt.Println("hello")
 
-	var test Test
-	var runner Runner = test
-	fmt.Println(runner == nil)
+	err := test()
+	fmt.Println(err == nil)
 }
 
-func (t Test) Run() {
-	fmt.Println("Test run")
+func test() error {
+	var testError TestError
+	return testError
+}
+
+func (te TestError) Error() string {
+	return "test error m"
 }
