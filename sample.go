@@ -4,19 +4,20 @@ import (
 	"fmt"
 )
 
-type User struct {
-	name string
-	age  int
+type Runner interface {
+	Run()
 }
+
+type Test struct{}
 
 func main() {
 	fmt.Println("hello")
 
-	var bob *User
-	fmt.Println(bob == nil)
-	bob.test()
+	var test Test
+	var runner Runner = test
+	fmt.Println(runner == nil)
 }
 
-func (u *User) test() {
-	fmt.Println("User method: test")
+func (t Test) Run() {
+	fmt.Println("Test run")
 }
