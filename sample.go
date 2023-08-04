@@ -2,19 +2,27 @@ package main
 
 import (
 	"fmt"
-	"io"
 )
 
-type Counter interface {
-	count() int
+type TestError struct {
+	Message string
+}
+
+func (e TestError) Error() string {
+	return e.Message
 }
 
 func main() {
 	fmt.Println("hello")
-	doSomething()
+
+	err := wrap()
+	fmt.Println(err == nil)
 }
 
-func doSomething() (int, string, error) {
-	fmt.Println("Do something")
-	return 123, "hello", io.EOF
+func doSomething() *TestError {
+	return nil
+}
+
+func wrap() error {
+	return doSomething()
 }
