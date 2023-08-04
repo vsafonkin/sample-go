@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 )
 
 type Counter interface {
@@ -15,5 +16,5 @@ func main() {
 
 func doSomething() (int, string, error) {
 	fmt.Println("Do something")
-	return 123, "hello", nil
+	return 123, "hello", io.EOF
 }
