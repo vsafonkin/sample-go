@@ -17,11 +17,10 @@ func (e TestError) Error() string {
 
 func main() {
 	fmt.Println("-------------")
-	if _, err := openFile("./makefilee"); err != nil {
-		fmt.Println(err)
+	if err := wrap("./makefilee"); err != nil {
+		fmt.Printf("Error: %+v\n", err)
 	}
 
-	recPanic()
 	fmt.Println("goodbye")
 }
 
@@ -29,19 +28,13 @@ func openFile(path string) (*os.File, error) {
 	return os.Open(path)
 }
 
-func throwPanic() {
-	panic(TestError{
-		Test:      "test message",
-		Message:   "stop program",
-		ErrStatus: 123,
-	})
+func throwError(path string) error {
+	if _, err := openFile(path); err != nil {
+		return fmt.Errorf("throwError func: %w", err)
+	}
+	return nil
 }
 
-func recPanic() {
-	defer func() {
-		if v := recover(); v != nil {
-			fmt.Printf("recover panic: %v\n", v)
-		}
-	}()
-	throwPanic()
+func wrap(path string) error {
+	return fmt.Errorf("wrap func: %w", throwError(path))
 }
