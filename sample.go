@@ -14,15 +14,4 @@ func (e TestError) Error() string {
 
 func main() {
 	fmt.Println("hello")
-
-	err := wrap()
-	fmt.Println(err == nil)
-}
-
-func doSomething() *TestError {
-	return nil
-}
-
-func wrap() error {
-	return doSomething()
 }
