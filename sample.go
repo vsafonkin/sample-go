@@ -5,7 +5,6 @@ import (
 )
 
 type TestError struct {
-	Test      string
 	Message   string
 	ErrStatus int
 }
