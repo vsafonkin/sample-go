@@ -33,4 +33,5 @@ func run(ch chan<- string) {
 	ch <- "hello"
 	ch <- "goodbye"
 	ch <- "12345"
+	ch <- "gogogo"
 }
