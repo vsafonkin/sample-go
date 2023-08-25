@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 type TestError struct {
@@ -17,21 +16,21 @@ func (e TestError) Error() string {
 func main() {
 	fmt.Println("-------------")
 
-	ch := make(chan string)
-	go run(ch)
-	time.Sleep(200 * time.Millisecond)
-	fmt.Println(<-ch)
-	fmt.Println(<-ch)
-	for v := range ch {
-		fmt.Printf("Value: %s\n", v)
+	ch := make(chan int)
+	done := make(chan bool)
+	go run(ch, done)
+
+	select {
+	case res := <-done:
+		fmt.Println("Done chan:", res)
+	case v := <-ch:
+		fmt.Println("Value chan:", v)
 	}
+	fmt.Println("main finish")
 }
 
-func run(ch chan<- string) {
+func run(ch chan<- int, done chan<- bool) {
 	defer close(ch)
 	fmt.Println("run func")
-	ch <- "hello"
-	ch <- "goodbye"
-	ch <- "12345"
-	ch <- "gogogo"
+	ch <- 123
 }
