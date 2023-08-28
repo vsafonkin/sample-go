@@ -37,9 +37,9 @@ func main() {
 }
 
 func run(timeout time.Duration, wg *sync.WaitGroup) {
+	defer wg.Done()
 	fmt.Println("go start")
 	fmt.Println("wait...", timeout, "milliseconds")
 	time.Sleep(timeout)
 	fmt.Println(timeout, "done")
-	wg.Done()
 }
