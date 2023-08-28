@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -17,30 +18,28 @@ func (e TestError) Error() string {
 func main() {
 	fmt.Println("-------------")
 
-	ch := make(chan int)
-	done := make(chan bool)
-	go run(ch, done)
+	var wg sync.WaitGroup
+	wg.Add(3)
 
-	func() {
-		for {
-			select {
-			case res := <-done:
-				fmt.Println("Done chan:", res)
-				return
-			case v := <-ch:
-				fmt.Println("Value chan:", v)
-			}
-		}
+	done := make(chan struct{})
+
+	go run(50*time.Millisecond, &wg)
+	go run(100*time.Millisecond, &wg)
+	go run(1000*time.Millisecond, &wg)
+	go func() {
+		defer close(done)
+		fmt.Println("wait all go")
+		wg.Wait()
+		fmt.Println("all gors are done")
 	}()
-	fmt.Println("main finish")
+	<-done
+
 }
 
-func run(ch chan<- int, done chan<- bool) {
-	defer close(ch)
-	fmt.Println("run func")
-	ch <- 123
-	time.Sleep(300 * time.Millisecond)
-	ch <- 456
-	time.Sleep(500 * time.Millisecond)
-	done <- true
+func run(timeout time.Duration, wg *sync.WaitGroup) {
+	fmt.Println("go start")
+	fmt.Println("wait...", timeout, "milliseconds")
+	time.Sleep(timeout)
+	fmt.Println(timeout, "done")
+	wg.Done()
 }
