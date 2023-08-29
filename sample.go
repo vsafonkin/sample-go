@@ -3,11 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
+	"math/rand"
 	"time"
 )
 
 func main() {
 	fmt.Println("hello")
+
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	ch := make(chan int)
@@ -22,13 +24,14 @@ func run(ctx context.Context, ch <-chan int) {
 	select {
 	case <-ctx.Done():
 		fmt.Println("run func is done")
-	case <-ch:
-		fmt.Println("read from ch")
+	case v := <-ch:
+		fmt.Println("read from ch:", v)
 	}
 }
 
 func doSomething(ch chan<- int) {
 	defer close(ch)
-	time.Sleep(150 * time.Millisecond)
-	ch <- 123
+	randomInt := rand.Intn(200)
+	time.Sleep(time.Duration(randomInt) * time.Millisecond)
+	ch <- randomInt
 }
