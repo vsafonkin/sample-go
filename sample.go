@@ -3,19 +3,17 @@ package main
 import (
 	"context"
 	"fmt"
-	"time"
+	"reflect"
 )
 
 func main() {
 	fmt.Println("hello")
 	ctx := context.Background()
-	ctx, cancel := context.WithTimeout(ctx, 175*time.Millisecond)
-	go func() {
-		defer cancel()
-		now := time.Now()
-		<-ctx.Done()
-		fmt.Println("Timeout:", time.Since(now))
-	}()
+	t := reflect.TypeOf(ctx)
+	fmt.Println(t.Kind())
 
-	time.Sleep(500 * time.Millisecond)
+	m := map[string]int{
+		"hello": 123,
+	}
+	fmt.Println(reflect.TypeOf(m).Kind())
 }
