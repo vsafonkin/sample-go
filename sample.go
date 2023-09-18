@@ -10,5 +10,5 @@ func main() {
 }
 
 func doSomething() {
-	fmt.Println("do something")
+	fmt.Println("func doSomething")
 }
