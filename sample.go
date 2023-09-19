@@ -1,24 +1,25 @@
 package main
 
 import (
+	// "bufio"
 	"fmt"
+	// "net/http"
+	// _ "net/http/pprof"
+	"github.com/pkg/profile"
 )
 
-type User struct {
-	name string
-}
-
 func main() {
+	defer profile.Start().Stop()
+	// go func() {
+	// 	fmt.Println(http.ListenAndServe("localhost:8080", nil))
+	// }()
+
 	fmt.Println("hello")
 	doSomething()
 
-	stc := new(struct {
-		name string
-	})
-	*stc = User{
-		name: "bob",
-	}
-	fmt.Println(stc)
+	// buf := bufio.NewReader(os.Stdin)
+	// fmt.Println("Press enter to finish program")
+	// buf.ReadBytes('\n')
 }
 
 func doSomething() {
