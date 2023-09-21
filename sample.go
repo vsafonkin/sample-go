@@ -10,7 +10,16 @@ func main() {
 	prof := profile.Start()
 	defer prof.Stop()
 	fmt.Println("hello")
-	doSomething()
+	// doSomething()
+
+	arrFn := make([]func(), 5)
+	for i := range [5]struct{}{} {
+		arrFn[i] = func() {
+			fmt.Println(i)
+		}
+	}
+
+	arrFn[2]()
 }
 
 func doSomething() {
