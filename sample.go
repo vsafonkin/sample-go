@@ -1,27 +1,24 @@
 package main
 
 import (
-	// "bufio"
 	"fmt"
-	// "net/http"
-	// _ "net/http/pprof"
 	"github.com/pkg/profile"
+	"math/rand"
 )
 
 func main() {
-	defer profile.Start().Stop()
-	// go func() {
-	// 	fmt.Println(http.ListenAndServe("localhost:8080", nil))
-	// }()
-
+	prof := profile.Start()
+	defer prof.Stop()
 	fmt.Println("hello")
 	doSomething()
-
-	// buf := bufio.NewReader(os.Stdin)
-	// fmt.Println("Press enter to finish program")
-	// buf.ReadBytes('\n')
 }
 
 func doSomething() {
 	fmt.Println("do something")
+	for {
+		if rand.Intn(5_000_000_000) == 123456789 {
+			fmt.Println("Done")
+			break
+		}
+	}
 }
