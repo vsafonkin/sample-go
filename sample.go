@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 	"github.com/pkg/profile"
-	"math/rand"
+	"io"
+	"os"
 )
 
 func main() {
 	prof := profile.Start()
 	defer prof.Stop()
-	fmt.Println("hello")
-	// doSomething()
+
+	io.WriteString(os.Stdout, "hello\n")
 
 	arrFn := make([]func(), 5)
 	for i := range [5]struct{}{} {
@@ -20,14 +21,5 @@ func main() {
 	}
 
 	arrFn[2]()
-}
 
-func doSomething() {
-	fmt.Println("do something")
-	for {
-		if rand.Intn(5_000_000_000) == 123456789 {
-			fmt.Println("Done")
-			break
-		}
-	}
 }
