@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	prof := profile.Start()
+	prof := profile.Start(profile.ProfilePath("./pprof"))
 	defer prof.Stop()
 
 	fmt.Println("hello")
