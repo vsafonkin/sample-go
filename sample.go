@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	// "github.com/pkg/profile"
+	"github.com/pkg/profile"
 )
 
 func main() {
-	// prof := profile.Start(profile.ProfilePath("./pprof"))
-	// defer prof.Stop()
+	prof := profile.Start(profile.ProfilePath("./pprof"))
+	defer prof.Stop()
 
 	fmt.Println("hello")
 }
