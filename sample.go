@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/pkg/profile"
+	"io"
+	"os"
 )
 
 func main() {
@@ -10,4 +12,5 @@ func main() {
 	defer prof.Stop()
 
 	fmt.Println("hello")
+	io.WriteString(os.Stdout, "-----\n")
 }
