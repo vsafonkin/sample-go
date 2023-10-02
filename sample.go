@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/pkg/profile"
-	"io"
-	"os"
 )
 
 func main() {
@@ -12,5 +10,12 @@ func main() {
 	defer prof.Stop()
 
 	fmt.Println("hello")
-	io.WriteString(os.Stdout, "-----\n")
+
+	ptr := doSomething()
+	fmt.Printf("%T, %[1]p, %d\n", ptr, *ptr)
+}
+
+func doSomething() *int {
+	n := 123
+	return &n
 }
