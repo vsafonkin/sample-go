@@ -11,11 +11,15 @@ func main() {
 
 	fmt.Println("hello")
 
-	ptr := doSomething()
+	n, ptr := doSomething()
 	fmt.Printf("%T, %[1]p, %d\n", ptr, *ptr)
+	fmt.Println("n:", n)
+
+	n++
+	fmt.Println(*ptr, n)
 }
 
-func doSomething() *int {
+func doSomething() (int, *int) {
 	n := 123
-	return &n
+	return n, &n
 }
