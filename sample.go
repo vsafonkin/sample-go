@@ -10,5 +10,4 @@ func main() {
 	defer prof.Stop()
 
 	fmt.Println("hello")
-	fmt.Println("-----")
 }
