@@ -7,7 +7,6 @@ import (
 
 var test = func() int {
 	fmt.Println("test func")
-	doSomething()
 	return 123
 }()
 
@@ -16,8 +15,4 @@ func main() {
 	defer prof.Stop()
 
 	fmt.Println("hello")
-}
-
-func doSomething() {
-	fmt.Println("do something")
 }
