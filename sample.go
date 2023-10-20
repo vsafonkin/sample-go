@@ -10,7 +10,6 @@ func main() {
 	defer prof.Stop()
 
 	fmt.Println("hello")
-	b := 0b11100111
-	h := 0x123FAB
-	fmt.Println(b, h)
+	str := "-----\n\u222F\n-----"
+	fmt.Println(str)
 }
