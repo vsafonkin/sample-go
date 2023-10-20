@@ -10,4 +10,6 @@ func main() {
 	defer prof.Stop()
 
 	fmt.Println("hello")
+	b := 0b11100111
+	fmt.Println(b)
 }
