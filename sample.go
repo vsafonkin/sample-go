@@ -9,7 +9,6 @@ func main() {
 	prof := profile.Start(profile.ProfilePath("./pprof"))
 	defer prof.Stop()
 
-	fmt.Println("hello")
-	str := "-----\n\u222F\n-----"
-	fmt.Println(str)
+	fmt.Println("-----")
+	fmt.Println(123 + 3.45)
 }
