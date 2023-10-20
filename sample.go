@@ -11,5 +11,6 @@ func main() {
 
 	fmt.Println("hello")
 	b := 0b11100111
-	fmt.Println(b)
+	h := 0x123FAB
+	fmt.Println(b, h)
 }
