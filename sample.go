@@ -15,4 +15,12 @@ func main() {
 	f := 12.3
 	res := f + 456.7
 	fmt.Printf("%v -> %[1]T\n", res)
+
+	intMax := int(^uint(0) >> 1)
+	fmt.Printf("%v %08[1]b -> %[1]T\n", intMax)
+	fmt.Println(intMax + 12345)
+
+	var t byte = 253
+	sum := t + 123
+	fmt.Printf("-----\n%v -> %[1]T\n", sum)
 }
