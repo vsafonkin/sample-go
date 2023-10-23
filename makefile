@@ -12,3 +12,6 @@ build: fmt
 checkrace:
 	go run --race sample.go
 .PHONY:checkrace
+
+debug:
+	go build -gcflags '-N -l' -o dist/debug sample.go
