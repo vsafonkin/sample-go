@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 	"unsafe"
 )
 
@@ -22,4 +23,8 @@ func doSomething() {
 	message := "hibob"
 	userId := 123321
 	fmt.Println("start...", message, &message, userId, &userId)
+	for {
+		fmt.Println(message, &message, userId, &userId)
+		time.Sleep(5 * time.Second)
+	}
 }
