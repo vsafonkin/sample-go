@@ -5,8 +5,8 @@ fmt:
 .PHONY:fmt
 
 build: fmt
-	go build -o dist/sample sample.go
-	./dist/sample
+	go build -o bin/sample sample.go
+	./bin/sample
 .PHONY:build
 
 checkrace:
@@ -14,4 +14,4 @@ checkrace:
 .PHONY:checkrace
 
 debug:
-	go build -gcflags '-N -l' -o dist/debug sample.go
+	go build -gcflags="-N -l" -o bin/debug sample.go

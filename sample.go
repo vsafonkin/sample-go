@@ -2,21 +2,24 @@ package main
 
 import (
 	"fmt"
-	// "time"
-	// "github.com/pkg/profile"
+	"unsafe"
 )
 
 func main() {
-	// prof := profile.Start(profile.ProfilePath("./pprof"))
-	// defer prof.Stop()
 
-	fmt.Println("-----")
+	var a = 231
+	var b = 253
+	var c = 123
+	var sum = a + b + c
+	fmt.Printf("Size: %d, Pointer: %p\n", unsafe.Sizeof(sum), &sum)
+	doSomething()
 
+	str := "goodbye"
+	fmt.Println(str)
+}
+
+func doSomething() {
 	message := "hibob"
-	userId := 123
-	fmt.Println("start...", message, userId)
-	// for {
-	// 	fmt.Println(message, userId)
-	// 	time.Sleep(5 * time.Second)
-	// }
+	userId := 123321
+	fmt.Println("start...", message, &message, userId, &userId)
 }
