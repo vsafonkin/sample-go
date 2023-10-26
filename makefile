@@ -14,4 +14,5 @@ checkrace:
 .PHONY:checkrace
 
 debug:
-	go build -gcflags="-N -l" -o bin/debug sample.go
+	go build -gcflags='all=-N -l' -o bin/debug sample.go
+.PHONY:debug
