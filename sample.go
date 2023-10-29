@@ -4,11 +4,21 @@ import (
 	"fmt"
 )
 
+type User struct {
+	name string
+	age  int
+}
+
 func main() {
 
-	var a = 231
-	var b = 253
-	var c = 123
-	var sum = a + b + c
-	fmt.Println(sum)
+	bob := User{
+		name: "bob",
+	}
+	doSomething(&bob)
+
+	fmt.Printf("%+v\n", bob)
+}
+
+func doSomething(user *User) {
+	user.name = "alisa"
 }
