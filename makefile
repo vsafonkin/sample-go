@@ -4,6 +4,10 @@ fmt:
 	go fmt ./...
 .PHONY:fmt
 
+imports:
+	gopls imports -w *.go
+.PHONY:imports
+
 build: fmt
 	go build -o bin/sample sample.go
 	./bin/sample
