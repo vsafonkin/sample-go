@@ -25,6 +25,11 @@ func ComparableTypes() {
 
 	// Interface types that are not type parameters are comparable.
 	// Two interface values are equal if they have identical dynamic types and equal dynamic values or if both have value nil
+
+	//Struct types are comparable if all their field types are comparable.
+	// Two struct values are equal if their corresponding non-blank field values are equal.
+	// The fields are compared in source order, and comparison stops as soon as two field values differ (or all fields have been compared).
+
 	bob := BobRunner{}
 	bob_2 := BobRunner{}
 	fmt.Println(bob == bob_2)
