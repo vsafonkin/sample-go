@@ -2,7 +2,21 @@ package mtest
 
 import (
 	"testing"
+	"time"
+
+	"github.com/golang/mock/gomock"
+	"github.com/vsafonkin/sample-go/mtest/mock_mtest"
 )
+
+func TestHelloRunner(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mockedRunner := mock_mtest.NewMockRunner(ctrl)
+	mockedRunner.EXPECT().Run(123).Return(nil)
+
+	HelloRunner(123, mockedRunner)
+}
 
 func TestIntSum(t *testing.T) {
 
@@ -46,5 +60,21 @@ func Test_dataRace(t *testing.T) {
 	expected := 0
 	if result != expected {
 		t.Errorf("failed: expected: %d, got %d\n", expected, result)
+	}
+}
+
+var output int
+
+func BenchmarkIntSum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		result := IntSum(3, 4)
+		output = result
+	}
+}
+
+func BenchmarkRunSomething(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		result := RunSomething(200 * time.Millisecond)
+		output = result
 	}
 }
