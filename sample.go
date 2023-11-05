@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	"runtime"
+
+	"github.com/vsafonkin/sample-go/mtest"
 )
 
 func main() {
-	fmt.Printf("goroutines: %d\n", runtime.NumGoroutine())
+	result := mtest.IntSum(123, 231)
+	fmt.Println(result)
 }
