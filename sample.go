@@ -8,6 +8,6 @@ import (
 )
 
 func main() {
-	result := mtest.RunSomething(2 * time.Second)
+	result := mtest.RunSomething(1 * time.Second)
 	fmt.Println(result)
 }
