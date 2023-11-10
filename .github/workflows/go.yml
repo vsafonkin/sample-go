@@ -23,5 +23,5 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-    - name: Run
-      run: for i in {1..100};do ./bin/sample; done
+    - name: Bench
+      run: go test -bench=. ./...
