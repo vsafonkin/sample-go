@@ -1,9 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"os"
+	"runtime"
+	"time"
 
 	"github.com/vsafonkin/sample-go/tcpserver"
 )
@@ -15,9 +18,24 @@ func main() {
 		os.Exit(0)
 	}
 
-	server := tcpserver.NewTCPServer(os.Args[1], os.Args[2])
-	err := server.Start()
+	ctx := context.Background()
+	done := make(chan struct{})
+	server := tcpserver.NewTCPServer(ctx, os.Args[1], os.Args[2])
+	go func() {
+		err := server.Run()
+		if err != nil {
+			log.Println("run server error:", err)
+			return
+		}
+		<-done
+	}()
+	time.Sleep(2 * time.Second)
+	err := server.Stop()
 	if err != nil {
-		log.Fatal(err)
+		log.Println("stop server error:", err)
 	}
+	done <- struct{}{}
+
+	time.Sleep(100 * time.Millisecond)
+	fmt.Println("goroutines:", runtime.NumGoroutine())
 }
