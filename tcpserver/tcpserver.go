@@ -44,16 +44,16 @@ func (ts *TCPServer) Run() error {
 	for ts.isRunning {
 		conn, err := ts.listener.Accept()
 		if err != nil {
-			e <- fmt.Errorf("accept connection error: %w", err)
+			log.Printf("accept connection error: %s\n", err.Error())
 			continue
 		}
 
 		fmt.Printf("connection accepted: %+v, remote addr: %s\n", conn, conn.RemoteAddr())
 
 		go func() {
-
 			e <- readFromConnect(conn)
 		}()
+
 	}
 	return nil
 }
@@ -72,9 +72,13 @@ func readFromConnect(conn net.Conn) error {
 	buffer := make([]byte, 256)
 	var message string
 	for {
+		_, err := conn.Write([]byte("> "))
+		if err != nil {
+			return fmt.Errorf("write connection error: %w", err)
+		}
 		n, err := conn.Read(buffer)
 		if err == io.EOF {
-			fmt.Printf("close connection %v\n", conn)
+			log.Printf("close connection %v\n", conn)
 			return conn.Close()
 		}
 		if err != nil {
@@ -82,9 +86,5 @@ func readFromConnect(conn net.Conn) error {
 		}
 		message = string(buffer[:n])
 		log.Printf("conn: %v, recieved message: %s", conn, message)
-		_, err = conn.Write([]byte("ok\n"))
-		if err != nil {
-			return fmt.Errorf("write connection error: %w", err)
-		}
 	}
 }

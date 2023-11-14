@@ -29,7 +29,7 @@ func main() {
 		}
 		<-done
 	}()
-	time.Sleep(2 * time.Second)
+	time.Sleep(60 * time.Second)
 	err := server.Stop()
 	if err != nil {
 		log.Println("stop server error:", err)
