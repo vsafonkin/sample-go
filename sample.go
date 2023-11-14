@@ -12,7 +12,6 @@ import (
 )
 
 func main() {
-	fmt.Println("---")
 	if len(os.Args) != 3 {
 		fmt.Println("usage: sample <address> <port>")
 		os.Exit(0)
@@ -37,5 +36,5 @@ func main() {
 	done <- struct{}{}
 
 	time.Sleep(100 * time.Millisecond)
-	fmt.Println("goroutines:", runtime.NumGoroutine())
+	log.Println("goroutines:", runtime.NumGoroutine())
 }
