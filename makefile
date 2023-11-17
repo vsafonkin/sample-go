@@ -9,7 +9,7 @@ imports:
 .PHONY:imports
 
 build: fmt
-	go build -o bin/sample sample.go
+	go build -ldflags='-s -w' -o bin/sample sample.go
 	./bin/sample
 .PHONY:build
 
