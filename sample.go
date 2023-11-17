@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	str := "hello"
-	sout := unsafe.String(unsafe.StringData(str), 48)
-	fmt.Println(sout)
+	s := []int{1, 2, 3}
+	sp := (*[3]int)(unsafe.Pointer(&s))
+	fmt.Println(*sp)
 }
