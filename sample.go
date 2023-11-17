@@ -8,7 +8,6 @@ import (
 func main() {
 
 	str := "hello"
-	p := (*[2]int)(unsafe.Pointer(&str))
-	p[1] = 48000
-	fmt.Println(str)
+	sh := unsafe.String(unsafe.StringData(str), 48000)
+	fmt.Println(sh)
 }
