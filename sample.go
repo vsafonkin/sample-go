@@ -8,6 +8,6 @@ import (
 func main() {
 
 	str := "hello"
-	sh := unsafe.String(unsafe.StringData(str), 48000)
-	fmt.Println(sh)
+	sout := unsafe.String(unsafe.StringData(str), 48)
+	fmt.Println(sout)
 }
