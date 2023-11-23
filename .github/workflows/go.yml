@@ -24,7 +24,7 @@ jobs:
       run: make
 
     - name: Test
-      run: go test -v ./...
+      run: make test
 
     - name: Bench
-      run: go test -bench=. ./...
+      run: make bench

@@ -20,3 +20,10 @@ checkrace:
 debug:
 	go build -gcflags='all=-N -l' -o bin/debug sample.go
 .PHONY:debug
+
+test:
+	go test -v ./...
+.PHONY:test
+
+bench:
+	go test -bench=. ./...
