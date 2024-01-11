@@ -7,6 +7,11 @@ import (
 func main() {
 	fmt.Println("-----")
 
-	b := 0b01111011
-	fmt.Println(b + 1.2e3)
+	var mb byte = 199
+	var rn rune = 'W'
+	a := 123
+	b := 231
+	str := "hello, golang"
+
+	fmt.Println(mb, rn, a, b, str)
 }
