@@ -7,11 +7,15 @@ import (
 func main() {
 	fmt.Println("-----")
 
-	var bt byte = 199
-	var rn rune = 'W'
-	a := 123
-	b := 231
-	str := "hello, golang"
+	var arr [3]int
+	fmt.Println(arr)
 
-	fmt.Println(bt, rn, a, b, str)
+	arr[1] = 123
+	fmt.Println(arr)
+
+	func(arr [3]int) {
+		arr[2] = 456
+	}(arr)
+
+	fmt.Println(arr)
 }
