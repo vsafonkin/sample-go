@@ -44,5 +44,15 @@ func checkTCPConnection(host string, port int) {
 		return
 	}
 	fmt.Println("connection success:", addr)
+	go func() {
+		buffer := make([]byte, 1024)
+		n, err := conn.Read(buffer)
+		if err != nil {
+			fmt.Println("error read from connection:", err)
+			return
+		}
+		fmt.Println("read from connection", port, string(buffer[:n]))
+	}()
+	time.Sleep(5 * time.Second)
 	conn.Close()
 }
