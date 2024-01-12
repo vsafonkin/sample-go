@@ -2,23 +2,56 @@ package main
 
 import (
 	"fmt"
+	"net"
+	"os"
+	"runtime"
+	"sync"
+	"time"
 )
 
 func main() {
 	fmt.Println("-----")
 
-	var arr []int = []int{0, 0, 0}
-	fmt.Println(arr)
+	if len(os.Args) == 1 {
+		fmt.Println("usage: command <domen>")
+		os.Exit(0)
+	}
 
-	arr[1] = 123
-	fmt.Println(arr)
+	go func() {
+		for {
+			fmt.Println("gorutinues number:", runtime.NumGoroutine())
+			time.Sleep(5 * time.Second)
+		}
+	}()
 
-	func(arr []int) {
-		arr[2] = 456
-		fmt.Println(cap(arr))
-		arr = append(arr, 789)
-		fmt.Println(cap(arr))
-	}(arr)
+	host := os.Args[1]
+	var wg sync.WaitGroup
+	for i := 1; i <= 65365; i++ {
+		wg.Add(1)
+		go func(port int) {
+			checkTCPConnection(host, port)
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+	fmt.Println("Done.")
+}
 
-	fmt.Println(arr)
+func checkTCPConnection(host string, port int) {
+	addr := fmt.Sprintf("%s:%d", host, port)
+	conn, err := net.DialTimeout("tcp", addr, 3*time.Second)
+	if err != nil {
+		return
+	}
+	fmt.Println("connection success:", addr)
+
+	buffer := make([]byte, 128)
+	n, err := conn.Read(buffer)
+	if err != nil {
+		fmt.Println("error read from connection:", err)
+		conn.Close()
+		return
+	}
+	fmt.Println("read from connection:", string(buffer[:n]))
+	conn.Close()
 }
