@@ -7,13 +7,13 @@ import (
 
 func AddItems() {
 	var data = []string{}
-	for i := 0; i <= 65600; i++ {
+	for i := 0; i <= 65550; i++ {
 		data = append(data, fmt.Sprintf("%d", i))
 	}
 }
 func AddItems2() {
-	data := make([]string, 65600)
-	for i := 0; i <= 65600; i++ {
+	data := make([]string, 65550)
+	for i := 0; i <= 65550; i++ {
 		data = append(data, fmt.Sprintf("%d", i))
 	}
 }
