@@ -14,7 +14,7 @@ func main() {
 		panic(fmt.Errorf("open file error: %v", err))
 	}
 
-	buf := make([]byte, 1024)
+	buf := make([]byte, 64)
 	for {
 		n, err := f.Read(buf)
 		if err != nil && err == io.EOF {
