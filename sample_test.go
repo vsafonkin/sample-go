@@ -31,11 +31,16 @@ func BenchmarkAddItems2(b *testing.B) {
 	b.ReportAllocs()
 }
 
-func BenchmarkSomething(b *testing.B) {
+func ByteSlice() *[]byte {
+	bs := new([]byte)
+	temp := make([]byte, 2048)
+	*bs = temp
+	return bs
+}
+
+func BenchmarkByteSlice(b *testing.B) {
 	for i := 0; i <= b.N; i++ {
-		func(n int) int {
-			return i * i * i
-		}(i)
+		ByteSlice()
 	}
 	b.ReportAllocs()
 }
