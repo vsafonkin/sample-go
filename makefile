@@ -4,8 +4,12 @@ fmt:
 	go fmt ./...
 .PHONY:fmt
 
+lint:
+	go vet ./...
+.PHONY:lint
+
 imports:
-	gopls imports -w *.go
+	gopls imports -w sample.go
 .PHONY:imports
 
 build: fmt
@@ -26,4 +30,4 @@ test:
 .PHONY:test
 
 bench:
-	go test -bench=. ./...
+	go test -bench=. ./... -benchmem
