@@ -8,7 +8,6 @@ func main() {
 	fmt.Println("-----")
 	s1 := doSomething()
 	println(s1)
-
 }
 
 //go:noinline
