@@ -1,23 +1,35 @@
 package main
 
 import (
-	"flag"
 	"fmt"
-	"log"
-	"os"
-	"runtime/pprof"
 )
 
-var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to file")
-
 func main() {
-	flag.Parse()
-	if *cpuprofile != "" {
-		f, err := os.Create(fmt.Sprintf("./%s/%s", "pprof", *cpuprofile))
-		if err != nil {
-			log.Fatal(err)
-		}
-		pprof.StartCPUProfile(f)
-		defer pprof.StopCPUProfile()
+	fmt.Println("-----")
+	s1 := doSomething()
+	println(s1)
+
+}
+
+//go:noinline
+func doSomething() [][]int {
+
+	t := make([]int, 1000)
+	n := 1000
+	s := make([]int, n)
+	for i := 0; i < n; i++ {
+		s[i] = i
+		t[i] = i
 	}
+	return [][]int{t, s, run()}
+}
+
+//go:noinline
+func run() []int {
+	n := 5000
+	s := make([]int, n)
+	for i := 0; i < n; i++ {
+		s[i] = i
+	}
+	return s
 }
