@@ -3,12 +3,17 @@ package main
 import (
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
+
+	"github.com/vsafonkin/sample-go/gendata"
 )
 
 func main() {
-	fmt.Println("-----")
-	s := []int{1, 3, 5, 6, 9, 12, 13, 17, 24, 87, 99}
+	s := gendata.IntRandomSlice(100, 100)
+	slices.Sort(s)
+	fmt.Println(s)
+	fmt.Println("--------")
 	if len(os.Args) > 1 {
 		target, err := strconv.Atoi(os.Args[1])
 		if err != nil {
