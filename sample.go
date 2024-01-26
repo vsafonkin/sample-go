@@ -1,41 +1,31 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"slices"
-	"strconv"
+import "fmt"
 
-	"github.com/vsafonkin/sample-go/gendata"
-)
-
-func main() {
-	s := gendata.IntRandomSlice(100, 100)
-	slices.Sort(s)
-	fmt.Println(s)
-	fmt.Println("--------")
-	if len(os.Args) > 1 {
-		target, err := strconv.Atoi(os.Args[1])
-		if err != nil {
-			os.Exit(0)
-		}
-		fmt.Println(searchInsert(s, target))
-	}
+type User struct {
+	id   int
+	name string
 }
 
-func searchInsert(nums []int, target int) int {
-	i := len(nums) / 2
-	switch {
-	case i == 0:
-		if nums[0] < target {
-			return 1
-		}
-		return 0
-	case nums[i] > target:
-		out := searchInsert(nums[:i], target)
-		return out
-	case nums[i] < target:
-		return searchInsert(nums[i:], target) + i
+type Admin struct {
+	User
+	access bool
+}
+
+func main() {
+
+	alice := Admin{
+		User{
+			1,
+			"Alice",
+		},
+		true,
 	}
-	return i
+
+	fmt.Printf("%T %+[1]v\n", alice)
+	alice.SayHello()
+}
+
+func (u User) SayHello() {
+	fmt.Println("Hello,", u.name)
 }
