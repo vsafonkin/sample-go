@@ -29,3 +29,7 @@ func main() {
 func (u User) SayHello() {
 	fmt.Println("Hello,", u.name)
 }
+
+func (a Admin) SayHello() {
+	fmt.Println("Hello, admin", a.name)
+}
