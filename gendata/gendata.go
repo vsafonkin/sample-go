@@ -11,3 +11,11 @@ func IntRandomSlice(n int, m int) []int {
 	}
 	return out
 }
+
+func ByteRandomSlice(n int) []byte {
+	out := make([]byte, n)
+	for i := range out {
+		out[i] = byte(rand.Intn(12345))
+	}
+	return out
+}
