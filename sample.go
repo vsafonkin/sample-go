@@ -2,25 +2,43 @@ package main
 
 import (
 	"fmt"
-	"runtime"
-	"sync"
+
+	"github.com/vsafonkin/sample-go/common"
 )
 
+type Task struct {
+	id   int
+	done bool
+}
+
+type ConsoleLog struct {
+	message string
+}
+
 func main() {
-	var wg sync.WaitGroup
-
-	var once sync.Once
-
-	for i := 0; i < 100; i++ {
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			once.Do(func() {
-				fmt.Println("once function")
-			})
-		}()
+	task := &Task{
+		id: 123,
 	}
-	fmt.Println(runtime.NumGoroutine())
-	wg.Wait()
-	fmt.Println("done")
+	log := ConsoleLog{"task is done"}
+
+	doSomething(123, task, log)
+}
+
+func doSomething(taskId int, runner common.Runner, printer common.Printer) {
+	if err := runner.Run(taskId); err != nil {
+		fmt.Println(err)
+	}
+	printer.Println()
+}
+
+func (t *Task) Run(taskId int) error {
+	if t.id == taskId {
+		t.done = true
+		return nil
+	}
+	return fmt.Errorf("task not matched")
+}
+
+func (cl ConsoleLog) Println() {
+	fmt.Println(cl.message)
 }
