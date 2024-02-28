@@ -1,3 +1,9 @@
 package main
 
-func main() {}
+import (
+	"github.com/vsafonkin/sample-go/db"
+)
+
+func main() {
+	db.ConnectToDatabase()
+}
