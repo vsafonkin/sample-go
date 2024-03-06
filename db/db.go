@@ -2,42 +2,27 @@ package db
 
 import (
 	"fmt"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-var host = "localhost"
-var port = "5432"
-var user = "postgres"
-var password = "admin"
-var dbname = "dvdrental"
-
-type Actor struct {
-	ActorId   int    `json:"actor_id" gorm:"primaryKey"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
+type DB struct {
+	conn *gorm.DB
 }
 
-func ConnectToDatabase() {
+func NewConnect(host, port, dbname, user, password string) (*DB, error) {
 	// dsn := "postgres://postgres:admin@localhost:5432/dvdrental"
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s", host, port, user, password, dbname)
 	conn, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	fmt.Println("conn:", conn)
-	var actor Actor
-	conn.First(&actor)
-	fmt.Println(actor)
-	var actor2 Actor
-	conn.First(&actor2, 3)
-	fmt.Println(actor2)
-
-	var allActors []Actor
-	conn.Find(&allActors)
-	fmt.Printf("%v+\n", allActors)
+	return &DB{
+		conn: conn,
+	}, nil
 }
 
-func (Actor) TableName() string {
-	return "actor"
+func (db *DB) ExecRawQuery(query string) {
+	db.conn.Raw(query).Scan(&struct{}{})
 }
