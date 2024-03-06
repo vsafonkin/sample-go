@@ -2,11 +2,17 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/vsafonkin/sample-go/db"
 	"github.com/vsafonkin/sample-go/parser"
 )
 
 func main() {
+	if len(os.Args) == 1 {
+		os.Exit(0)
+	}
+
 	conn, err := db.NewConnect("localhost", "5432", "dvdrental", "postgres", "admin")
 	if err != nil {
 		panic(err)
