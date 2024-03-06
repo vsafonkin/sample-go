@@ -39,5 +39,5 @@ func Parse(s string) []string {
 	hostname := temp[4]
 	proc := temp[5]
 	body := strings.Join(temp[6:], " ")
-	return []string{month, logdate, logtime, hostname, proc, body}
+	return []string{month, logdate, logtime, hostname, proc, body[:len(body)-1]}
 }
