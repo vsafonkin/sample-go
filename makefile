@@ -14,16 +14,16 @@ imports:
 
 build: fmt
 	go build -ldflags='-s -w' -o bin/sample sample.go
-	./bin/sample
+	go build -gcflags='all=-N -l' -o bin/debug sample.go
 .PHONY:build
+
+run:
+	./bin/sample
+.PHONY:run
 
 checkrace:
 	go run --race sample.go
 .PHONY:checkrace
-
-debug:
-	go build -gcflags='all=-N -l' -o bin/debug sample.go
-.PHONY:debug
 
 test:
 	go test -v ./...

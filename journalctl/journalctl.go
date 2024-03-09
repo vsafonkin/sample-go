@@ -21,7 +21,7 @@ type Jlog struct {
 	Message          string `json:"MESSAGE"`
 }
 
-func Journalctl() ([]Jlog, error) {
+func Parse() ([]Jlog, error) {
 	cmd := exec.Command("journalctl", "-b", "-o", "json")
 	stdout, err := cmd.Output()
 	if err != nil {
