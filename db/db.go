@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"time"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -23,6 +24,8 @@ func NewConnect(host, port, dbname, user, password string) (*DB, error) {
 	}, nil
 }
 
-func (db *DB) ExecRawQuery(query string) {
+func (db *DB) ExecRawQuery(query string) time.Duration {
+	start := time.Now()
 	db.conn.Raw(query).Scan(&struct{}{})
+	return time.Since(start)
 }

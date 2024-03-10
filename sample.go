@@ -23,24 +23,25 @@ func main() {
 		panic(err)
 	}
 
+	var td time.Duration
 	var counter int
 	var wg sync.WaitGroup
-	for i := 0; i < 2; i++ {
+	for i := 0; i < 3; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
 			for {
 				// randomUpdate(conn)
-				selectKernel(conn)
+				td = selectKernel(conn)
 				counter++
-				time.Sleep(1 * time.Millisecond)
+				time.Sleep(10 * time.Millisecond)
 			}
 		}()
 	}
 	go func() {
 		for {
-			fmt.Printf("counter: %v\r", counter)
-			time.Sleep(1 * time.Second)
+			fmt.Printf("counter: %d, request time: %v\r", counter, td)
+			time.Sleep(100 * time.Millisecond)
 		}
 	}()
 	wg.Wait()
@@ -53,10 +54,10 @@ func randomUpdate(conn *db.DB) {
 	conn.ExecRawQuery(query)
 }
 
-func selectKernel(conn *db.DB) {
+func selectKernel(conn *db.DB) time.Duration {
 	query := fmt.Sprintf(
-		`SELECT * FROM journal WHERE message ~ '%s' ORDER BY log_timestamp`,
+		`SELECT exe, message FROM journal WHERE message ~ '%s';`,
 		"USER=root",
 	)
-	conn.ExecRawQuery(query)
+	return conn.ExecRawQuery(query)
 }
