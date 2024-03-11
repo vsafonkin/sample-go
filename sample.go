@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-
 	// logs, err := journalctl.Parse()
 	// if err != nil {
 	// panic(err)
@@ -24,6 +23,8 @@ func main() {
 	}
 
 	var td time.Duration
+	var maxTime time.Duration
+	minTime := time.Duration(1000 * time.Second)
 	var counter int
 	var wg sync.WaitGroup
 	for i := 0; i < 3; i++ {
@@ -33,14 +34,20 @@ func main() {
 			for {
 				// randomUpdate(conn)
 				td = selectKernel(conn)
+				if td > maxTime {
+					maxTime = td
+				}
+				if td < minTime {
+					minTime = td
+				}
 				counter++
-				time.Sleep(10 * time.Millisecond)
+				time.Sleep(1 * time.Millisecond)
 			}
 		}()
 	}
 	go func() {
 		for {
-			fmt.Printf("counter: %d, request time: %v\r", counter, td)
+			fmt.Printf("counter: %d, request time: %v, min: %v, max: %v\r", counter, td, minTime, maxTime)
 			time.Sleep(100 * time.Millisecond)
 		}
 	}()
@@ -56,8 +63,8 @@ func randomUpdate(conn *db.DB) {
 
 func selectKernel(conn *db.DB) time.Duration {
 	query := fmt.Sprintf(
-		`SELECT exe, message FROM journal WHERE message ~ '%s';`,
-		"USER=root",
+		`SELECT transport, hostname FROM journal WHERE transport = '%s';`,
+		"syslog",
 	)
 	return conn.ExecRawQuery(query)
 }
