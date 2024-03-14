@@ -6,7 +6,7 @@ func main() {
 	n := 10
 	done := make(chan int)
 	var counter int
-	for i := 0; i < n; i++ {
+	for i := range 10 {
 		go func() {
 			done <- i
 		}()
