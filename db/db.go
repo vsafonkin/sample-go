@@ -12,9 +12,16 @@ type DB struct {
 	conn *gorm.DB
 }
 
-func NewConnect(host, port, dbname, user, password string) (*DB, error) {
+func NewConnect(host, port, dbname, user, password, appname string) (*DB, error) {
 	// dsn := "postgres://postgres:admin@localhost:5432/dvdrental"
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s", host, port, user, password, dbname)
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s application_name=%s",
+		host,
+		port,
+		user,
+		password,
+		dbname,
+		appname)
+
 	conn, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
