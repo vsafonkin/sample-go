@@ -5,6 +5,7 @@ go 1.22
 require (
 	github.com/golang/mock v1.6.0
 	github.com/redis/go-redis/v9 v9.5.1
+	google.golang.org/protobuf v1.33.0
 	gorm.io/driver/postgres v1.5.6
 	gorm.io/gorm v1.25.7
 )
