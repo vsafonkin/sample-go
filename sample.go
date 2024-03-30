@@ -2,22 +2,18 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/vsafonkin/sample-go/user"
 	"google.golang.org/protobuf/proto"
 )
 
 func main() {
-	bob := user.User{
-		Name: "Bob",
-	}
 
-	encoded, err := proto.Marshal(&bob)
+	encoded, err := os.ReadFile("./user/bob.bytes")
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println(encoded)
 
 	dec := user.User{}
 	if err := proto.Unmarshal(encoded, &dec); err != nil {
