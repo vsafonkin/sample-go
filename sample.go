@@ -1,24 +1,33 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"context"
+	"time"
 
-	"github.com/vsafonkin/sample-go/user"
-	"google.golang.org/protobuf/proto"
+	"github.com/vsafonkin/sample-go/db"
 )
 
 func main() {
+	config := db.Config{
+		Host:    "localhost",
+		Port:    "5432",
+		DBName:  "dvdrental",
+		User:    "postgres",
+		Pass:    "admin",
+		AppName: "goapp",
+	}
 
-	encoded, err := os.ReadFile("./user/bob.bytes")
+	pool, err := db.NewPool(8, config)
 	if err != nil {
 		panic(err)
 	}
 
-	dec := user.User{}
-	if err := proto.Unmarshal(encoded, &dec); err != nil {
-		panic(err)
-	}
+	ctx, cancel := context.WithCancel(context.Background())
+	query := "SELECT * FROM person;"
+	freq := 100 * time.Millisecond
+	go db.TestLoad(ctx, query, pool, freq)
 
-	fmt.Println(dec.Name)
+	time.Sleep(2 * time.Second)
+	cancel()
+	time.Sleep(300 * time.Millisecond)
 }
