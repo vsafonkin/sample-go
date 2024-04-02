@@ -44,8 +44,9 @@ func (db *DB) ExecRawQuery(query string) time.Duration {
 
 func NewPool(n int, config Config) ([]*DB, error) {
 	var connPool []*DB
+	appname := config.AppName
 	for i := range n {
-		config.AppName = fmt.Sprintf("goapp_%d", i)
+		config.AppName = fmt.Sprintf("%s_%d", appname, i)
 		conn, err := NewConnect(config)
 		if err != nil {
 			fmt.Println("appname:", config.AppName, "connection error:", err)

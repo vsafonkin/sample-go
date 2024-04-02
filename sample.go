@@ -2,23 +2,38 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"math/rand"
+	"sync"
 	"time"
 
 	"github.com/vsafonkin/sample-go/db"
 )
 
 func main() {
-	TestDB(1, 100*time.Second)
+	num := 1
+	duration := 10 * time.Second
+	var wg sync.WaitGroup
+	for i := range 32 {
+		wg.Add(1)
+		query := fmt.Sprintf("UPDATE person SET age = %d WHERE id = %d;", rand.Intn(60)+1, rand.Intn(12)+1)
+		go func() {
+			defer wg.Done()
+			appname := fmt.Sprintf("goapp_%d", i)
+			TestDB(num, query, appname, duration)
+		}()
+	}
+	wg.Wait()
 }
 
-func TestDB(numConn int, timeout time.Duration) {
+func TestDB(numConn int, query, appname string, timeout time.Duration) {
 	config := db.Config{
 		Host:    "localhost",
 		Port:    "5432",
 		DBName:  "dvdrental",
 		User:    "postgres",
 		Pass:    "admin",
-		AppName: "goapp",
+		AppName: appname,
 	}
 
 	pool, err := db.NewPool(numConn, config)
@@ -27,8 +42,7 @@ func TestDB(numConn int, timeout time.Duration) {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	query := "SELECT * FROM person;"
-	freq := 1 * time.Microsecond
+	freq := 1 * time.Nanosecond
 	go db.TestLoad(ctx, query, pool, freq)
 
 	time.Sleep(timeout)
