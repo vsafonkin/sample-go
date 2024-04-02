@@ -8,6 +8,10 @@ import (
 )
 
 func main() {
+	TestDB(1, 100*time.Second)
+}
+
+func TestDB(numConn int, timeout time.Duration) {
 	config := db.Config{
 		Host:    "localhost",
 		Port:    "5432",
@@ -17,17 +21,17 @@ func main() {
 		AppName: "goapp",
 	}
 
-	pool, err := db.NewPool(8, config)
+	pool, err := db.NewPool(numConn, config)
 	if err != nil {
 		panic(err)
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
 	query := "SELECT * FROM person;"
-	freq := 100 * time.Millisecond
+	freq := 1 * time.Microsecond
 	go db.TestLoad(ctx, query, pool, freq)
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(timeout)
 	cancel()
-	time.Sleep(300 * time.Millisecond)
+	time.Sleep(100 * time.Millisecond)
 }

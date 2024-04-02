@@ -61,12 +61,23 @@ func NewPool(n int, config Config) ([]*DB, error) {
 
 func TestLoad(ctx context.Context, query string, pool []*DB, freq time.Duration) {
 	num := len(pool)
-	var dur time.Duration
+	var currentTime, minTime, maxTime time.Duration
 	var counter int
 	go func() {
+		minTime = 1000 * time.Second
 	out:
 		for {
-			fmt.Printf("counter: %v, time: %v    \r", counter, dur)
+			if currentTime > maxTime {
+				maxTime = currentTime
+			}
+			if currentTime < minTime && currentTime != 0 {
+				minTime = currentTime
+			}
+			fmt.Printf("counter: %v, time: %v, min time: %v, max time: %v    \r",
+				counter,
+				currentTime,
+				minTime,
+				maxTime)
 			select {
 			case <-ctx.Done():
 				fmt.Println()
@@ -90,7 +101,7 @@ func TestLoad(ctx context.Context, query string, pool []*DB, freq time.Duration)
 			}()
 		out:
 			for {
-				dur = conn.ExecRawQuery(query)
+				currentTime = conn.ExecRawQuery(query)
 				select {
 				case <-ctx.Done():
 					break out
