@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	num := 4
-	duration := 100 * time.Second
-	query := "SELECT * FROM person;"
+	num := 1
+	duration := 1 * time.Second
+	query := "SELECT * FROM company;"
 	TestDB(num, query, "goapp", duration)
 }
 
@@ -18,7 +18,7 @@ func TestDB(numConn int, query, appname string, duration time.Duration) {
 	config := db.Config{
 		Host:    "localhost",
 		Port:    "5432",
-		DBName:  "dvdrental",
+		DBName:  "demo",
 		User:    "postgres",
 		Pass:    "admin",
 		AppName: appname,
