@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/vsafonkin/sample-go/db"
@@ -10,8 +12,11 @@ import (
 func main() {
 	num := 1
 	duration := 1 * time.Second
-	query := "SELECT * FROM company;"
-	TestDB(num, query, "goapp", duration)
+	for _ = range 64 {
+		query := fmt.Sprintf("UPDATE company SET stock_price = %d WHERE id = 1;", rand.Intn(5000))
+		TestDB(num, query, "goapp", duration)
+		time.Sleep(10 * time.Millisecond)
+	}
 }
 
 func TestDB(numConn int, query, appname string, duration time.Duration) {
@@ -30,7 +35,7 @@ func TestDB(numConn int, query, appname string, duration time.Duration) {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	freq := 1 * time.Nanosecond
+	freq := 0 * time.Nanosecond
 	go db.TestLoad(ctx, query, pool, freq)
 
 	time.Sleep(duration)
