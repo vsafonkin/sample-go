@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"math/rand"
+	"sync"
 	"time"
 
 	"github.com/vsafonkin/sample-go/db"
@@ -11,12 +11,17 @@ import (
 
 func main() {
 	num := 1
-	duration := 1 * time.Second
-	for _ = range 64 {
-		query := fmt.Sprintf("UPDATE company SET stock_price = %d WHERE id = 1;", rand.Intn(5000))
-		TestDB(num, query, "goapp", duration)
-		time.Sleep(10 * time.Millisecond)
+	duration := 10 * time.Second
+	var wg sync.WaitGroup
+	for _ = range 5 {
+		wg.Add(1)
+		query := fmt.Sprintf("SELECT * FROM airports_data;")
+		go func() {
+			defer wg.Done()
+			TestDB(num, query, "goapp", duration)
+		}()
 	}
+	wg.Wait()
 }
 
 func TestDB(numConn int, query, appname string, duration time.Duration) {
