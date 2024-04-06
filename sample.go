@@ -46,7 +46,7 @@ func TestDB(numConn int, query, appname string, duration time.Duration) {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	freq := 1000 * time.Nanosecond
+	freq := 100 * time.Millisecond
 	go db.TestLoad(ctx, query, pool, freq)
 
 	time.Sleep(duration)
