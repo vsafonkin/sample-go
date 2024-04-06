@@ -10,15 +10,21 @@ import (
 )
 
 func main() {
+	queries := []string{
+		"SELECT * FROM airports_data;",
+		"SELECT * FROM aircrafts_data;",
+		"SELECT * FROM seats;",
+	}
 	num := 1
-	duration := 10 * time.Second
+	duration := 600 * time.Second
 	var wg sync.WaitGroup
-	for _ = range 5 {
+	for i := range 3 {
 		wg.Add(1)
-		query := fmt.Sprintf("SELECT * FROM airports_data;")
+		query := queries[i]
 		go func() {
 			defer wg.Done()
-			TestDB(num, query, "goapp", duration)
+			appname := fmt.Sprintf("goapp_%d", i)
+			TestDB(num, query, appname, duration)
 		}()
 	}
 	wg.Wait()
@@ -26,7 +32,7 @@ func main() {
 
 func TestDB(numConn int, query, appname string, duration time.Duration) {
 	config := db.Config{
-		Host:    "localhost",
+		Host:    "192.168.18.131",
 		Port:    "5432",
 		DBName:  "demo",
 		User:    "postgres",
@@ -40,7 +46,7 @@ func TestDB(numConn int, query, appname string, duration time.Duration) {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	freq := 0 * time.Nanosecond
+	freq := 1000 * time.Nanosecond
 	go db.TestLoad(ctx, query, pool, freq)
 
 	time.Sleep(duration)
