@@ -1,10 +1,11 @@
 package web
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	// "github.com/labstack/echo/v4/middleware"
 )
 
 type response struct {
@@ -16,15 +17,15 @@ type user struct {
 	Name string
 }
 
-func RunEchoServer() {
+func RunEchoServer(host string, port string) {
 	e := echo.New()
 	e.HideBanner = true
 
-	e.Use(middleware.Logger())
+	// e.Use(middleware.Logger())
 	e.GET("/", homeEcho)
 	e.GET("/user", userEcho)
 
-	e.Logger.Fatal(e.Start(":8000"))
+	e.Logger.Fatal(e.Start(fmt.Sprintf("%s:%s", host, port)))
 }
 
 func homeEcho(c echo.Context) error {

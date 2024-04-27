@@ -1,12 +1,13 @@
 package web
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	// "github.com/go-chi/chi/v5/middleware"
 	"github.com/unrolled/render"
 )
 
@@ -16,17 +17,17 @@ type resp struct {
 	Message string
 }
 
-func RunChiServer() {
+func RunChiServer(host string, port string) {
 	r := chi.NewRouter()
 
 	rnd = render.New()
 
-	r.Use(middleware.Logger)
+	// r.Use(middleware.Logger)
 	r.Get("/", homeController)
 	r.Get("/time", timeController)
 	r.Get("/admin", adminController)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", host, port), r))
 }
 
 func homeController(w http.ResponseWriter, r *http.Request) {
