@@ -12,17 +12,12 @@ type responce struct {
 	Data    any
 }
 
-type User struct {
-	Id   int
-	Name string
-}
-
 func RunFiberServer(host string, port string) {
 	r := fiber.New()
 	r.Use(logger.New())
 
 	r.Get("/", homeGet)
-	r.Post("/", homePost)
+	r.Get("/:tablename", readData)
 
 	r.Listen(fmt.Sprintf("%s:%s", host, port))
 }
@@ -31,11 +26,13 @@ func homeGet(c *fiber.Ctx) error {
 	return c.JSON(responce{Message: "Hello"})
 }
 
-func homePost(c *fiber.Ctx) error {
-
-	var user User
-	if err := c.BodyParser(&user); err != nil {
-		fmt.Println("parser error:", err)
+func readData(c *fiber.Ctx) error {
+	tablename := c.Params("tablename")
+	if tablename == "" {
+		return c.JSON(responce{})
 	}
-	return c.JSON(responce{Message: user.Name, Data: user.Id})
+	col := c.Query("col")
+	val := c.Query("val")
+	query := fmt.Sprintf("SELECT * FROM %s WHERE %s = %s", tablename, col, val)
+	return c.JSON(responce{Message: "Query", Data: query})
 }
