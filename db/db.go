@@ -18,6 +18,7 @@ type Config struct {
 }
 
 func NewConnect(config Config) (*DB, error) {
+	fmt.Printf("New connect to db %s:%s\n", config.Host, config.Port)
 	// dsn := "postgres://postgres:admin@localhost:5432/dvdrental"
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s application_name=%s",
 		config.Host,
@@ -36,10 +37,16 @@ func NewConnect(config Config) (*DB, error) {
 	}, nil
 }
 
-func (db *DB) ExecRawQuery(query string) time.Duration {
+func (db *DB) ExecRawQuery(query string) (any, time.Duration) {
 	start := time.Now()
-	db.conn.Raw(query).Scan(&struct{}{})
-	return time.Since(start)
+	out := db.conn.Raw(query).Row()
+	return out, time.Since(start)
+}
+
+func (db *DB) Row(tablename string, column string, value string) map[string]any {
+	out := make(map[string]any, 1)
+	db.conn.Table(tablename).Take(out, column, value)
+	return out
 }
 
 func NewPool(n int, config Config) ([]*DB, error) {
@@ -102,7 +109,7 @@ func TestLoad(ctx context.Context, query string, pool []*DB, freq time.Duration)
 			}()
 		out:
 			for {
-				currentTime = conn.ExecRawQuery(query)
+				_, currentTime = conn.ExecRawQuery(query)
 				select {
 				case <-ctx.Done():
 					break out
