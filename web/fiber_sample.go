@@ -13,7 +13,7 @@ type responce struct {
 	Data    any
 }
 
-func RunFiberServer(host string, port string) {
+func RunFiberServer(host string, port string) error {
 	r := fiber.New()
 	r.Use(logger.New())
 
@@ -29,15 +29,15 @@ func RunFiberServer(host string, port string) {
 		fmt.Println("db connect error:", err)
 	}
 
+	r.Get("/", homeGet)
+
 	r.Use("/db", func(c *fiber.Ctx) error {
 		c.Locals("conn", conn)
 		return c.Next()
 	})
-	r.Get("/", homeGet)
-
 	r.Get("/db/:tablename", getRow)
 
-	r.Listen(fmt.Sprintf("%s:%s", host, port))
+	return r.Listen(fmt.Sprintf("%s:%s", host, port))
 }
 
 func homeGet(c *fiber.Ctx) error {
@@ -53,5 +53,5 @@ func getRow(c *fiber.Ctx) error {
 	col := c.Query("col")
 	val := c.Query("val")
 	row := conn.Row(tablename, col, val)
-	return c.JSON(responce{Message: "Query", Data: row})
+	return c.JSON(responce{Message: tablename, Data: row})
 }
