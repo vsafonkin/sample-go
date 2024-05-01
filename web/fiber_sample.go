@@ -17,12 +17,13 @@ func RunFiberServer(host string, port string) error {
 	r := fiber.New()
 	r.Use(logger.New())
 
+	dbname := "demo"
 	conn, err := db.NewConnect(db.Config{
 		Host:    "localhost",
 		Port:    "5432",
 		User:    "postgres",
 		Pass:    "admin",
-		DBName:  "demo",
+		DBName:  dbname,
 		AppName: "goapp",
 	})
 	if err != nil {
@@ -31,11 +32,13 @@ func RunFiberServer(host string, port string) error {
 
 	r.Get("/", homeGet)
 
-	r.Use("/db", func(c *fiber.Ctx) error {
+	dbRoute := fmt.Sprintf("/%s", dbname)
+	r.Use(dbRoute, func(c *fiber.Ctx) error {
 		c.Locals("conn", conn)
 		return c.Next()
 	})
-	r.Get("/db/:tablename", getRow)
+	tableRoute := fmt.Sprintf("%s/:tablename", dbRoute)
+	r.Get(tableRoute, getRow)
 
 	return r.Listen(fmt.Sprintf("%s:%s", host, port))
 }
