@@ -10,7 +10,6 @@ type CustomErr struct {
 }
 
 func main() {
-	fmt.Println("---")
 
 	var err error
 	err = CustomErr{
@@ -22,6 +21,17 @@ func main() {
 
 	fmt.Println(errors.Is(err, CustomErr{}))
 	fmt.Println(errors.As(err, &CustomErr{}))
+
+	fmt.Println("---")
+
+	fn := func() (e error) {
+		defer func() {
+			e = recover().(error)
+		}()
+		panic(err)
+	}
+	e := fn()
+	fmt.Printf("e: %+v\n", e)
 }
 
 func (e CustomErr) Error() string {
