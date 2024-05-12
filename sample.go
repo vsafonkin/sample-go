@@ -4,54 +4,86 @@ import (
 	"fmt"
 )
 
-type Tree struct {
+type LinkedList struct {
+	head *Node
+}
+
+type Node struct {
 	v int
-	l *Tree
-	r *Tree
+	n *Node
 }
 
 func main() {
-	tree := Tree{
-		v: 10,
-	}
-	fmt.Println(tree)
-	tree.Insert(13)
-	tree.Insert(8)
-	tree.Insert(6)
-	fmt.Println(tree)
-	fmt.Println(tree.Sum())
+	var ll LinkedList
+	ll.Add(5)
+	ll.Add(2)
+	ll.Add(17)
+	ll.Add(13)
+	ll.Add(1)
+	ll.String()
+	fmt.Println("---")
+	ll.Reverse()
+	ll.String()
 }
 
-func (t *Tree) Insert(n int) {
-	if t == nil {
+func (ll *Node) add(n int) {
+	if ll == nil {
 		return
 	}
-	if n < t.v {
-		if t.l == nil {
-			t.l = &Tree{
-				v: n,
-			}
-			return
+	if ll.n == nil {
+		ll.n = &Node{
+			v: n,
 		}
-		t.l.Insert(n)
 		return
 	}
-	if n > t.v {
-		if t.r == nil {
-			t.r = &Tree{
-				v: n,
-			}
-			return
-		}
-		t.r.Insert(n)
-		return
-	}
-	t.v = n
+	ll.n.add(n)
 }
 
-func (t *Tree) Sum() int {
-	if t == nil {
+func (node *Node) Sum() int {
+	if node == nil {
 		return 0
 	}
-	return t.v + t.l.Sum() + t.r.Sum()
+	return node.v + node.n.Sum()
+}
+
+func (ll *LinkedList) Add(n int) {
+	if ll == nil {
+		return
+	}
+	if ll.head == nil {
+		ll.head = &Node{
+			v: n,
+		}
+		return
+	}
+	ll.head.add(n)
+}
+
+func (ll *LinkedList) String() {
+	if ll == nil || ll.head == nil {
+		return
+	}
+	node := ll.head
+	for node != nil {
+		fmt.Printf("%p %d %p\n", node, node.v, node.n)
+		node = node.n
+	}
+}
+
+func (ll *LinkedList) Reverse() {
+	if ll == nil || ll.head == nil {
+		return
+	}
+
+	var prev *Node
+	current := ll.head
+	next := ll.head.n
+	for next != nil {
+		current.n = prev
+		prev = current
+		current = next
+		next = current.n
+	}
+	current.n = prev
+	ll.head = current
 }
