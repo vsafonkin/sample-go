@@ -24,3 +24,6 @@ test:
 
 bench:
 	go test -bench=. ./... -benchmem
+
+opt:
+	go build -gcflags -m -o ./bin/sample sample.go
