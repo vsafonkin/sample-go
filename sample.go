@@ -2,20 +2,20 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/vsafonkin/sample-go/stack"
 )
 
 func main() {
-	fmt.Println(Fib(50))
-}
+	s := stack.NewStack()
+	s.Push(123)
+	s.Push(456)
+	s.Push(789)
+	fmt.Println(s.Values())
 
-func Fib(n int) []int {
-	var out []int
-	a, b, c := 0, 0, 1
-	for i := 0; i < n; i++ {
-		a = b + c
-		b = c
-		c = a
-		out = append(out, c)
-	}
-	return out
+	n := s.Pop()
+	fmt.Println(n, s.Values())
+
+	n = s.Pop()
+	fmt.Println(n, s.Values())
 }
