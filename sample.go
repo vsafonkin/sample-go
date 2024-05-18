@@ -1,3 +1,9 @@
 package main
 
-func main() {}
+import (
+	"github.com/vsafonkin/sample-go/web"
+)
+
+func main() {
+	web.RunGinServer("localhost", "8080")
+}

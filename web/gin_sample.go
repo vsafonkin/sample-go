@@ -9,6 +9,7 @@ import (
 
 func RunGinServer(host string, port string) {
 	r := gin.New()
+	r.Use(gin.Logger())
 
 	r.GET("/", homeGin)
 	r.Run(fmt.Sprintf("%s:%s", host, port))

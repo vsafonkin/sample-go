@@ -16,6 +16,9 @@ build: fmt
 run:
 	./bin/sample
 
+debug:
+	env GODEBUG=gctrace=1 ./bin/debug
+
 checkrace:
 	go run --race sample.go
 
