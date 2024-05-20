@@ -53,10 +53,3 @@ func ConcPrimeSlice(n int) []int {
 	close(ch)
 	return output
 }
-
-func doSomething(n int, s string, b bool) (int, string, error) {
-	if s == "fail" {
-		return 0, "", fmt.Errorf("do something fail")
-	}
-	return len(s), "done", nil
-}
