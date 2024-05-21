@@ -1,7 +1,6 @@
 package prime
 
 import (
-	"fmt"
 	"sync"
 )
 
