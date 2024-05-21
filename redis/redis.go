@@ -26,3 +26,17 @@ func GetValue(ctx context.Context, key string) (interface{}, error) {
 	}
 	return val, nil
 }
+
+func GetValues(ctx context.Context, pattern string) ([]string, error) {
+	r, err := client.Do(ctx, "KEYS", pattern).Result()
+	if err != nil {
+		return nil, err
+	}
+	var out []string
+	ri := r.([]interface{})
+	for i := range ri {
+		out = append(out, ri[i].(string))
+	}
+
+	return out, nil
+}
