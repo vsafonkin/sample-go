@@ -14,7 +14,7 @@ build: fmt
 	go build -gcflags='all=-N -l' -o bin/debug sample.go
 
 run:
-	./bin/sample
+	./bin/sample $(ARGS)
 
 debug:
 	env GODEBUG=gctrace=1 ./bin/debug
