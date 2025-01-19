@@ -14,6 +14,7 @@ func RunGinServer(host string, port string) {
 	r.GET("/", homeGin)
 	r.Run(fmt.Sprintf("%s:%s", host, port))
 }
+
 func homeGin(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "hello, bob",

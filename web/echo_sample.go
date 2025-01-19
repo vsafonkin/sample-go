@@ -8,10 +8,6 @@ import (
 	// "github.com/labstack/echo/v4/middleware"
 )
 
-type response struct {
-	Message string
-}
-
 type user struct {
 	Id   string
 	Name string

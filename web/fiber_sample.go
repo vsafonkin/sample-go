@@ -8,7 +8,7 @@ import (
 	"github.com/vsafonkin/sample-go/db"
 )
 
-type responce struct {
+type response struct {
 	Message string
 	Data    any
 }
@@ -44,17 +44,17 @@ func RunFiberServer(host string, port string) error {
 }
 
 func homeGet(c *fiber.Ctx) error {
-	return c.JSON(responce{Message: "Hello"})
+	return c.JSON(response{Message: "Hello"})
 }
 
 func getRow(c *fiber.Ctx) error {
 	conn := c.Locals("conn").(*db.DB)
 	tablename := c.Params("tablename")
 	if tablename == "" {
-		return c.JSON(responce{})
+		return c.JSON(response{})
 	}
 	col := c.Query("col")
 	val := c.Query("val")
 	row := conn.Row(tablename, col, val)
-	return c.JSON(responce{Message: tablename, Data: row})
+	return c.JSON(response{Message: tablename, Data: row})
 }
