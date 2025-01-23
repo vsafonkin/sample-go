@@ -7,12 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RunGinServer(host string, port string) {
+func RunGinServer(host string, port string) error {
 	r := gin.New()
 	r.Use(gin.Logger())
 
 	r.GET("/", homeGin)
-	r.Run(fmt.Sprintf("%s:%s", host, port))
+	return r.Run(fmt.Sprintf("%s:%s", host, port))
 }
 
 func homeGin(c *gin.Context) {
