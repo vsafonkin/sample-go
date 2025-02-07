@@ -2,8 +2,10 @@ package web
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os/exec"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -42,6 +44,25 @@ func execCommand(c *gin.Context) {
 }
 
 func Metrics(c *gin.Context) {
-	data := "hello, alice"
-	c.Data(200, "text/plain; charset=utf-8", []byte(data))
+	cmd := exec.Command("cat", "/proc/cpuinfo")
+	stdout, err := cmd.Output()
+	if err != nil {
+		log.Println(err.Error())
+	}
+	s := strings.Split(string(stdout), "\n")
+	procs := make([]string, 0)
+	for _, line := range s {
+		if strings.Contains(line, "cpu MHz") {
+			lines := strings.Split(line, ":")
+			f := strings.Trim(lines[1], " ")
+			procs = append(procs, f)
+		}
+	}
+	output := ""
+	for i, v := range procs {
+		label := fmt.Sprintf("core=\"%d\"", i)
+		metric := fmt.Sprintf("localhost_cpu{%s} %s\n", label, v)
+		output += metric
+	}
+	c.Data(200, "text/plain; charset=utf-8", []byte(output))
 }
