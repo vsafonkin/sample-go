@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -50,19 +51,26 @@ func Metrics(c *gin.Context) {
 		log.Println(err.Error())
 	}
 	s := strings.Split(string(stdout), "\n")
-	procs := make([]string, 0)
+	totalCpu := 0
+	coresNum := 0
 	for _, line := range s {
 		if strings.Contains(line, "cpu MHz") {
 			lines := strings.Split(line, ":")
-			f := strings.Trim(lines[1], " ")
-			procs = append(procs, f)
+			l := strings.Trim(lines[1], " ")
+			freq, _ := strconv.ParseFloat(l, 64)
+			totalCpu += int(freq)
+			coresNum += 1
 		}
 	}
+	avgFreq := totalCpu / coresNum
+	freqMetric := fmt.Sprintf("cpu_freq %d\n", avgFreq)
+	maxCpuFreq := 4001.0 * float64(coresNum)
+	minCpuFreq := 799.0 * float64(coresNum)
+	cpuUsage := ((float64(totalCpu) - minCpuFreq) / maxCpuFreq) * 100
+	cpuUsageMetric := fmt.Sprintf("cpu_usage %.2f\n", cpuUsage)
 	output := ""
-	for i, v := range procs {
-		label := fmt.Sprintf("core=\"%d\"", i)
-		metric := fmt.Sprintf("localhost_cpu{%s} %s\n", label, v)
-		output += metric
-	}
+	output += freqMetric
+	output += cpuUsageMetric
+
 	c.Data(200, "text/plain; charset=utf-8", []byte(output))
 }
