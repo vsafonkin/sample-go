@@ -12,6 +12,13 @@ type Users []User
 type User struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
+	Address Address
+}
+
+type Address struct {
+	Street string `json:"street"`
+	City string `json:"city"`
+	Zipcode string `json:"zipcode"`
 }
 
 func main() {
@@ -51,6 +58,11 @@ func main() {
 	}
 
 	for _, user := range users2 {
-		fmt.Printf("id: %d, name: %s\n", user.Id, user.Name)
+		fmt.Printf("id: %d, name: %s,\ncity: %s, zipcode: %s\n",
+			user.Id,
+			user.Name,
+			user.Address.City,
+			user.Address.Zipcode,
+		)
 	}
 }
