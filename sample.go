@@ -10,14 +10,14 @@ import (
 type Users []User
 
 type User struct {
-	Id   int    `json:"id"`
-	Name string `json:"name"`
+	Id      int    `json:"id"`
+	Name    string `json:"name"`
 	Address Address
 }
 
 type Address struct {
-	Street string `json:"street"`
-	City string `json:"city"`
+	Street  string `json:"street"`
+	City    string `json:"city"`
 	Zipcode string `json:"zipcode"`
 }
 
