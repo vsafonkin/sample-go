@@ -27,12 +27,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer func() {
-		fmt.Println("defer")
-	}()
 
 	users := Users{}
-
 	err = json.Unmarshal(data, &users)
 	if err != nil {
 		log.Fatal(err)
