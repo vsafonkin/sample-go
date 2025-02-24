@@ -5,9 +5,4 @@ stages:
 job_build:
   stage: build
   script:
-    - echo "Build project"
-
-job_test:
-  stage: test
-  script:
-    - echo "Run tests"
+    - go version
