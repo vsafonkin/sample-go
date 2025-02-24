@@ -3,15 +3,11 @@ stages:
   - test
 
 job_build:
-  tags:
-    - docker-runner
   stage: build
   script:
     - echo "Build project"
 
 job_test:
-  tags:
-    - docker-runner
   stage: test
   script:
     - echo "Running tests"
