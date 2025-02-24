@@ -1,4 +1,6 @@
-image: docker-runner
+job:
+  tags:
+    - docker-runner
 
 stages:
   - build
