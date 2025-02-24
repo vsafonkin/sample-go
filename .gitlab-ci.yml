@@ -1,4 +1,4 @@
-image: ci
+image: docker-runner
 
 stages:
   - build
