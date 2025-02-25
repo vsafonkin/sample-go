@@ -4,4 +4,4 @@ stages:
 job:
   stage: build
   script:
-    - docker version
+    - hostname
