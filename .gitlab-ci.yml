@@ -4,7 +4,7 @@ default:
     - docker:24.0.5-dind
 
 variables:
-  IMAGE_NAME: bbx
+  IMAGE_NAME: registry.barsikthecat/$CI_PROJECT_PATH/bbx
 
 before_script:
   - docker login -u "$CI_USER" -p "$DEPLOY_TOKEN" $REGISTRY
