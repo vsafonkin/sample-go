@@ -1,8 +1,7 @@
 stages:
   - build
-  - test
 
-job_build:
+job:
   stage: build
   script:
-    - go version
+    - docker version
