@@ -4,7 +4,7 @@ default:
     - docker:24.0.5-dind
 
 variables:
-  IMAGE_NAME: registry.barsikthecat.ru/golang/sample-go/bbx-sample
+  IMAGE_NAME: bbx
 
 before_script:
   - docker login -u "$CI_USER" -p "$DEPLOY_TOKEN" $REGISTRY
