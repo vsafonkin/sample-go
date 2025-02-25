@@ -3,11 +3,21 @@ default:
   services:
     - docker:24.0.5-dind
 
+variables:
+  IMAGE_NAME: registry.barsikthecat.ru/golang/sample-go/bbx-sample
+
+before_script:
+  - docker login -u "$CI_USER" -p "$DEPLOY_TOKEN" $REGISTRY
+
 stages:
   - build
 
-job:
+build_image:
   stage: build
   script:
-    - docker build -t bbx-sample .
-    - docker images
+    - docker build -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA .
+
+push_image:
+  stage: push
+  script:
+    - docker push $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
