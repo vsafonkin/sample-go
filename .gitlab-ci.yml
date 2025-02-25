@@ -11,9 +11,18 @@ before_script:
 
 stages:
   - build
+  - deploy
 
 build_and_push_image:
   stage: build
   script:
     - docker build -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA .
     - docker push $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+
+deploy_to_production:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."
+  when: manual
+  only:
+    - main
