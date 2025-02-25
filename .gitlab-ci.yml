@@ -9,4 +9,5 @@ stages:
 job:
   stage: build
   script:
-    - docker version
+    - docker build -t bbx-sample .
+    - docker images

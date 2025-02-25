@@ -1,6 +1,3 @@
-FROM ubuntu:latest
-COPY ./bin/sample /
+FROM busybox
 
-EXPOSE 8083
-
-CMD [ "/sample" ]
+CMD [ "busybox hostname" ]
