@@ -4,10 +4,10 @@ default:
     - docker:24.0.5-dind
 
 variables:
-  IMAGE_NAME: registry.barsikthecat.ru/$CI_PROJECT_PATH/bbx
+  IMAGE_NAME: $CI_REGISTRY_IMAGE/bbx
 
 before_script:
-  - docker login -u "$CI_USER" -p "$DEPLOY_TOKEN" $REGISTRY
+  - docker login -u $CI_USER -p $DEPLOY_TOKEN $REGISTRY
 
 stages:
   - build
@@ -23,8 +23,7 @@ build_and_push_image:
 deploy_to_production:
   stage: deploy
   script:
-    - echo $CI_REGISTRY_IMAGE
-    - echo "commit $CI_COMMIT_SHORT_SHA"
+    - echo "Deploy to prod"
   when: manual
   only:
     - main
