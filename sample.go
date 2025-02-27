@@ -22,6 +22,7 @@ type Address struct {
 }
 
 func main() {
+	fmt.Println("hello")
 	path := "./test_data/users.json"
 	data, err := os.ReadFile(path)
 	if err != nil {
