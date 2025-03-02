@@ -24,18 +24,8 @@ type Address struct {
 func main() {
 	fmt.Println("hello")
 	path := "./test_data/users.json"
-	data, err := os.ReadFile(path)
-	if err != nil {
-		log.Fatal(err)
-	}
 
 	users := Users{}
-	err = json.Unmarshal(data, &users)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Printf("%#v\n", users)
 
 	f, err := os.Open(path)
 	if err != nil {
@@ -48,13 +38,12 @@ func main() {
 		}
 	}()
 
-	var users2 Users
-	err = json.NewDecoder(f).Decode(&users2)
+	err = json.NewDecoder(f).Decode(&users)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, user := range users2 {
+	for _, user := range users {
 		fmt.Printf("id: %d, name: %s,\ncity: %s, zipcode: %s\n",
 			user.Id,
 			user.Name,
