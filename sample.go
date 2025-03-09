@@ -1,54 +1,39 @@
 package main
 
 import (
-	"fmt"
-	"github.com/goccy/go-json"
-	"log"
-	"os"
+	"crypto/md5"
+	"encoding/hex"
+	"math/rand"
 )
 
-type Users []User
-
-type User struct {
-	Id      int    `json:"id"`
-	Name    string `json:"name"`
-	Address Address
-}
-
-type Address struct {
-	Street  string `json:"street"`
-	City    string `json:"city"`
-	Zipcode string `json:"zipcode"`
-}
-
 func main() {
-	fmt.Println("hello")
-	path := "./test_data/users.json"
+	wordHash := "8b215d105e88b6e45c4c6af99f098398"
 
-	users := Users{}
-
-	f, err := os.Open(path)
-	if err != nil {
-		log.Fatal(err)
+	ch := make(chan struct{})
+	for i := 0; i < 16; i++ {
+		go func() {
+			for {
+				s, hash := genMD5RandHashString(7)
+				if hash == wordHash {
+					println(s)
+					ch <- struct{}{}
+					break
+				}
+			}
+		}()
 	}
-	defer func() {
-		err = f.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}()
+	<-ch
+}
 
-	err = json.NewDecoder(f).Decode(&users)
-	if err != nil {
-		log.Fatal(err)
+func genMD5RandHashString(n int) (string, string) {
+	symbols := "qwertyuiopasdfghjklzxcvbnm"
+	buf := make([]byte, n)
+
+	for i := 0; i < n; i++ {
+		buf[i] = symbols[rand.Intn(len(symbols))]
 	}
 
-	for _, user := range users {
-		fmt.Printf("id: %d, name: %s,\ncity: %s, zipcode: %s\n",
-			user.Id,
-			user.Name,
-			user.Address.City,
-			user.Address.Zipcode,
-		)
-	}
+	mdHash := md5.Sum(buf)
+	hashString := hex.EncodeToString(mdHash[:])
+	return string(buf), hashString
 }
