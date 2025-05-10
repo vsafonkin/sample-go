@@ -1,15 +1,7 @@
 package main
 
-import (
-	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
-)
+import "github.com/vsafonkin/sample-go/lifegame"
 
 func main() {
-	// UNIX Time is faster and smaller than most timestamps
-	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
-
-	log.Print("hello world")
+	lifegame.Run()
 }
-
-// Output: {"time":1516134303,"level":"debug","message":"hello world"}

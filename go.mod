@@ -11,7 +11,6 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/redis/go-redis/v9 v9.5.1
-	github.com/rs/zerolog v1.34.0
 	github.com/unrolled/render v1.6.1
 	google.golang.org/protobuf v1.33.0
 	gorm.io/driver/postgres v1.5.6
